@@ -8,11 +8,14 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Space {
 
     private int width, height;
     private Player player;
+    private List<Border> borders;
 
     //TEXT OFFSET VALUES
     private int LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
@@ -22,6 +25,7 @@ public class Space {
         this.width = width;
         this.height = height;
         this.player = new Player(10,10);
+        this.borders = createBorders();
 
         LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE = height-10;
@@ -31,6 +35,11 @@ public class Space {
         //Draws Game Background
         graphics.setBackgroundColor(TextColor.Factory.fromString("#737373"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+
+        //Draws Map Borders
+        for(Border border : borders){
+            border.draw(graphics);
+        }
 
         //Draws Character
         player.draw(graphics);
@@ -55,17 +64,24 @@ public class Space {
             case ArrowLeft:
                 movePlayer(player.moveLeft());
                 break;
-            case F1: //Added for testing if player lifes display is working correctly
-                player.deductPlayerLifes();
-                break;
-            case F2:
-                player.addLifes();
-                break;
         }
     }
 
     public void movePlayer(Position position){
         player.setPosition(position);
+    }
+
+    private List<Border> createBorders() {
+        List<Border> borders = new ArrayList<>();
+        for (int i = 0; i < width; i++) {
+            borders.add(new Border(i, 0));
+            borders.add(new Border(i, height - 1));
+        }
+        for (int j = 1; j < height - 1; j++) {
+            borders.add(new Border(0, j));
+            borders.add(new Border(width - 1, j));
+        }
+        return borders;
     }
 
 }
