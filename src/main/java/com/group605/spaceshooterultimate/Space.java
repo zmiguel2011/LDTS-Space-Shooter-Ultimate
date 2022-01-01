@@ -68,7 +68,9 @@ public class Space {
     }
 
     public void movePlayer(Position position){
-        player.setPosition(position);
+        if(canEntityMove(position) == true){
+            player.setPosition(position);
+        }
     }
 
     private List<Border> createBorders() {
@@ -82,6 +84,15 @@ public class Space {
             borders.add(new Border(width - 1, j));
         }
         return borders;
+    }
+
+    public boolean canEntityMove(Position position){
+        for(Border border : borders){
+            if(position.equals(border.getPosition())){
+                return false;
+            }
+        }
+        return true;
     }
 
 }
