@@ -1,12 +1,11 @@
 package com.group605.spaceshooterultimate;
 
-import java.util.Random;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-abstract class Enemy extends Entity{
+public abstract class Enemy extends Entity {
     int health;
 
     Enemy(int x, int y, int health) {
@@ -14,9 +13,16 @@ abstract class Enemy extends Entity{
         this.health = health;
     }
 
+
     public int getHealth() { return health; }
     public void setHealth(int health) { this.health = health; }
 
+
+    public void draw(TextGraphics graphics){
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
+    }
 
     public Position moveEnemy(){
         return new Position(position.getX(), position.getY()+1);
