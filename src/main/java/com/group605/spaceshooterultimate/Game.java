@@ -68,7 +68,12 @@ public class Game {
             if (key.getKeyType() == KeyType.EOF) { //Verifies if EOF got reached
                 break;
             }
+            processKey(key);
         }
     }
 
+    private void processKey(KeyStroke key){
+        space.processKey(key);
+    }
 }
+
