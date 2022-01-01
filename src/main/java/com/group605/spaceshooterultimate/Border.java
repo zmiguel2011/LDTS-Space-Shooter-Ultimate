@@ -5,20 +5,10 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Border {
-
-    Position position;
+public class Border extends Entity{
 
     Border(int x, int y){
-        position = new Position(x, y);
-    }
-
-    public Position getPosition(){
-        return this.position;
-    }
-
-    public void setPosition(Position position){
-        this.position = position;
+        super(x,y);
     }
 
     public void draw(TextGraphics graphics){

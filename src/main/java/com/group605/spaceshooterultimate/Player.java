@@ -5,14 +5,12 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Player {
+public class Player extends Entity{
     int lifes = 3;
     String lifestr = "3";
 
-    Position position;
-
     Player(int x, int y){
-        position = new Position(x, y);
+        super(x,y);
     }
 
     public int getLifes() {
@@ -21,14 +19,6 @@ public class Player {
 
     public void setLifes(int lifes) {
         this.lifes = lifes;
-    }
-
-    public void setPosition(Position position){
-        this.position = position;
-    }
-
-    public Position getPosition(){
-        return this.position;
     }
 
     public Position moveUp(){
