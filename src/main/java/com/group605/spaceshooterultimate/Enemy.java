@@ -18,11 +18,7 @@ public abstract class Enemy extends Entity {
     public void setHealth(int health) { this.health = health; }
 
 
-    public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "E");
-    }
+    public void draw(TextGraphics graphics){ }
 
     public Position moveEnemy(){
         return new Position(position.getX(), position.getY()+1);
