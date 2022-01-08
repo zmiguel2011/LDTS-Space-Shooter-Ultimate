@@ -22,17 +22,17 @@ public class PositionTest {
     }
 
     @Test
-    void PlayerMoveLeft() { assertEquals(10 - moveSize, position.getX()); }
+    void PlayerMoveLeft() { assertEquals(10 - moveSize, position.getX() - 1); }
 
     @Test
-    void PlayerMoveRight() { assertEquals(10 + moveSize, position.getX()); }
+    void PlayerMoveRight() { assertEquals(10 + moveSize, position.getX() + 1); }
 
     @Test
-    void PlayerMoveUp() { assertEquals(10 + moveSize, position.getY()); }
+    void PlayerMoveUp() { assertEquals(10 + moveSize, position.getY() + 1); }
 
     @Test
     void PlayerMoveDown() {
-        assertEquals(10 - moveSize, position.getY());
+        assertEquals(10 - moveSize, position.getY() - 1);
     }
 
     @Test
