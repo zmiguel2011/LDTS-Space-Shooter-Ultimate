@@ -7,6 +7,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.IOException;
 
@@ -61,6 +62,11 @@ public class Game {
         createTerminal();
         while(true){
             draw(); //Function that draws the objects on the screen
+            asteroids();
+            if(space.getPlayer().getLifes() == 0){
+                System.out.println("GAME OVER! YOU LOST!");
+                closeTerminal();
+            }
             KeyStroke key = screen.pollInput(); //Reads the Key input; NOTE: pollInput()-> If no Input was read then it returns null
             if(key == null)
                 continue;
@@ -73,6 +79,12 @@ public class Game {
             processKey(key);
         }
     }
+
+    private void asteroids() throws InterruptedException {
+        space.createAsteroids();
+        space.manageAsteroid();
+    }
+
 
     private void processKey(KeyStroke key){
         space.processKey(key);

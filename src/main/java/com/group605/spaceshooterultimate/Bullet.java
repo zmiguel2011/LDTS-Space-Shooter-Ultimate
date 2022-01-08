@@ -22,7 +22,9 @@ public abstract class Bullet {
 
     }
 
-    public abstract void move();
+    public void move(){
+        this.position.setY(this.position.getY()-1);
+    }
 
     public abstract void draw(TextGraphics graphics);
 }

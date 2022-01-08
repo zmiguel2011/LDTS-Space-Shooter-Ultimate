@@ -11,9 +11,6 @@ public class DoubleShot extends Bullet {
         super(x, y);
     }
 
-    public void move(){
-        this.position.setY(this.position.getY()-1);
-    }
 
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));

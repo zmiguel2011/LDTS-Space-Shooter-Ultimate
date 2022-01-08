@@ -18,16 +18,18 @@ public abstract class Enemy extends Entity {
     public void setHealth(int health) { this.health = health; }
 
 
-    public void draw(TextGraphics graphics){ }
+    public abstract void draw(TextGraphics graphics);
 
-    public Position moveEnemy(){
-        return new Position(position.getX(), position.getY()+1);
+    public void moveEnemy(){
+        this.position.setY(this.position.getY()+1);
     }
 
-    public void checkImpact(Enemy enemy, Player player) {
-        if(enemy.position == player.position) {
+    public boolean checkImpact(Enemy enemy, Player player) {
+        if(enemy.position.equals(player.position)) {
             player.lives--;
+            return true;
         }
+        return false;
     }
 
 

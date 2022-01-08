@@ -8,8 +8,11 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
 
 public class Space {
 
@@ -20,6 +23,8 @@ public class Space {
     private List<SingleShot> singleShots;
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
+    private List<Asteroid> asteroids;
+    private final int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
 
 
     //TEXT OFFSET VALUES
@@ -39,6 +44,7 @@ public class Space {
         this.doubleShots = new ArrayList<>();
         this.burstShots = new ArrayList<>();
         this.ammotype = 1; //Sets Single as Default Ammo Type
+        this.asteroids = new ArrayList<>();
 
         LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE = height-10;
@@ -74,6 +80,11 @@ public class Space {
         for(BurstShot burstShot : burstShots){
             burstShot.draw(graphics);
             burstShot.move();
+        }
+
+        //Draws Asteroids
+        for(Asteroid asteroid : asteroids){
+            asteroid.draw(graphics);
         }
 
         //Draws Character
@@ -123,6 +134,15 @@ public class Space {
                 break;
         }
     }
+
+    public void createAsteroids(){
+        Random random = new Random();
+
+        while(asteroids.size() < ASTEROID_NUMBER){
+            asteroids.add(new Asteroid(random.nextInt(width+1), (height-height)+1, 100, "small"));
+        }
+    }
+
 
     private void FireWeapon(){
         if(ammotype == 1){
@@ -181,8 +201,25 @@ public class Space {
         return true;
     }
 
-    //Added for test implementation
-    public Player getPlayer() {
+    private boolean isHeightExceeded(Position position){
+        if(position.getY() >= height)
+            return true;
+        else
+            return false;
+    }
+    
+    public void manageAsteroid() throws InterruptedException {
+        for(Asteroid asteroid : asteroids){
+            asteroid.moveEnemy();
+            if(asteroid.checkImpact(asteroid, player) || isHeightExceeded(asteroid.getPosition())){
+                asteroids.remove(asteroid);
+                break;
+            }
+        }
+    }
+
+    public Player getPlayer(){
         return player;
     }
+
 }
