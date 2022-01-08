@@ -3,26 +3,28 @@ package com.group605.spaceshooterultimate;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Bullet {
-    private Position position;
-    private int damage;
+public abstract class Bullet {
+    protected Position position;
+    protected int damage;
 
-    void setDamage(int damage){
+    Bullet(int x, int y){
+        this.position = new Position(x, y);
+    }
+
+    public void setDamage(int damage){
         this.damage = damage;
     }
-    int getDamage(){
+    public int getDamage(){
         return this.damage;
     }
 
-    void checkCollision(Player player){
-        if (player.position.equals(this.position)){
-            player.lifes--;
-        }
+    public void checkBulletImpact(Position position){
+
     }
-    Position move(){
-        return new Position(position.getX(),position.getY() - 1);
+
+    public void move(){
+        this.position.setY(this.position.getY()-1);
     }
-    void draw(TextGraphics graphics){
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "|");
-    }
+
+    public abstract void draw(TextGraphics graphics);
 }

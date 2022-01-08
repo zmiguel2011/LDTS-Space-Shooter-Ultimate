@@ -16,6 +16,7 @@ public class Space {
     private int width, height;
     private Player player;
     private List<Border> borders;
+    private List<SingleShot> singleShots;
 
     //TEXT OFFSET VALUES
     private int LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
@@ -26,6 +27,7 @@ public class Space {
         this.height = height;
         this.player = new Player(10,10);
         this.borders = createBorders();
+        this.singleShots = new ArrayList<>();
 
         LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE = height-10;
@@ -39,6 +41,12 @@ public class Space {
         //Draws Map Borders
         for(Border border : borders){
             border.draw(graphics);
+        }
+
+        //Draws Bullets
+        for(SingleShot singleShot : singleShots){
+            singleShot.draw(graphics);
+            singleShot.move();
         }
 
         //Draws Character
@@ -64,8 +72,17 @@ public class Space {
             case ArrowLeft:
                 movePlayer(player.moveLeft());
                 break;
+            case Escape:
+                singleShotFire();
+                break;
         }
     }
+
+    private List<SingleShot> singleShotFire(){
+        singleShots.add(new SingleShot(player.position.getX(), player.position.getY()-1));
+            return singleShots;
+    }
+
 
     public void movePlayer(Position position){
         if(canEntityMove(position) == true){
@@ -95,4 +112,8 @@ public class Space {
         return true;
     }
 
+    //Added for test implementation
+    public Player getPlayer() {
+        return player;
+    }
 }

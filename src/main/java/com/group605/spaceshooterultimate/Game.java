@@ -57,11 +57,13 @@ public class Game {
         screen.refresh();
     }
 
-    public void run() throws IOException{
+    public void run() throws IOException, InterruptedException{
         createTerminal();
-        while (true){
+        while(true){
             draw(); //Function that draws the objects on the screen
-            KeyStroke key = screen.readInput(); //Reads the Key input
+            KeyStroke key = screen.pollInput(); //Reads the Key input; NOTE: pollInput()-> If no Input was read then it returns null
+            if(key == null)
+                continue;
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')   { //Verifies if it was 'q'
                 closeTerminal();
             }

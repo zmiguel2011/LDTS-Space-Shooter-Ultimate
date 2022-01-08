@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+
 public class Player extends Entity{
     int lifes = 3;
     String lifestr = "3";
@@ -45,9 +46,7 @@ public class Player extends Entity{
 
     //Quick Easy Way to Display Player Ammount of Lifes Remaining in an Arcade Way
     public String displayLifes(){
-        if(this.lifes == 4){
-            return lifestr = "LIFES REMAINING: 4";
-        }
+
         if(this.lifes == 3){
             return lifestr = "LIFES REMAINING: 3";
         }
@@ -61,5 +60,4 @@ public class Player extends Entity{
             return lifestr = "LIFES REMAINING: 0";
         }
     }
-
 }
