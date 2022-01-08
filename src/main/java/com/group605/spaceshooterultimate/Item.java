@@ -12,7 +12,7 @@ public class Item {
 
     void checkCollision(Player player){
         if(player.position.equals(position)){
-            player.lifes++;
+            player.lives++;
         }
     }
     void draw(TextGraphics graphics){

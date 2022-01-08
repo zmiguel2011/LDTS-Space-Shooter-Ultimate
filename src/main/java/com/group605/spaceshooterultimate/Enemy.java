@@ -26,7 +26,7 @@ public abstract class Enemy extends Entity {
 
     public void checkImpact(Enemy enemy, Player player) {
         if(enemy.position == player.position) {
-            player.lifes--;
+            player.lives--;
         }
     }
 

@@ -7,7 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 
 public class Player extends Entity{
-    int lifes = 3;
+    int lives = 3;
     String lifestr = "3";
 
     Player(int x, int y){
@@ -15,11 +15,11 @@ public class Player extends Entity{
     }
 
     public int getLifes() {
-        return lifes;
+        return lives;
     }
 
     public void setLifes(int lifes) {
-        this.lifes = lifes;
+        this.lives = lifes;
     }
 
     public Position moveUp(){
@@ -44,20 +44,20 @@ public class Player extends Entity{
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
     }
 
-    //Quick Easy Way to Display Player Ammount of Lifes Remaining in an Arcade Way
+    //Quick Easy Way to Display Player Amount of Lives Remaining in an Arcade Way
     public String displayLifes(){
 
-        if(this.lifes == 3){
-            return lifestr = "LIFES REMAINING: 3";
+        if(this.lives == 3){
+            return lifestr = "LIVES REMAINING: 3";
         }
-        else if(this.lifes == 2){
-            return lifestr = "LIFES REMAINING: 2";
+        else if(this.lives == 2){
+            return lifestr = "LIVES REMAINING: 2";
         }
-        else if(this.lifes == 1){
-            return lifestr = "LIFES REMAINING: 1";
+        else if(this.lives == 1){
+            return lifestr = "LIVES REMAINING: 1";
         }
         else {
-            return lifestr = "LIFES REMAINING: 0";
+            return lifestr = "LIVES REMAINING: 0";
         }
     }
 }
