@@ -3,9 +3,9 @@ package com.group605.spaceshooterultimate;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Bullet {
-    private Position position;
-    private int damage;
+public abstract class Bullet {
+    protected Position position;
+    protected int damage;
 
     void setDamage(int damage){
         this.damage = damage;
