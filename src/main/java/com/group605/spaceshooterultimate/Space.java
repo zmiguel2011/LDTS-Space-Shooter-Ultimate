@@ -24,7 +24,7 @@ public class Space {
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
-    private final int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
+    private final int ASTEROID_NUMBER = 10; //Sets how many Asteroids will spawn together
 
 
     //TEXT OFFSET VALUES
@@ -139,7 +139,7 @@ public class Space {
         Random random = new Random();
 
         while(asteroids.size() < ASTEROID_NUMBER){
-            asteroids.add(new Asteroid(random.nextInt(width+1), (height-height)+1, 100, "small"));
+            asteroids.add(new Asteroid(random.nextInt(width+1), (height-height)+1, 100, "default"));
         }
     }
 
@@ -207,11 +207,27 @@ public class Space {
         else
             return false;
     }
-    
+
+    private boolean isEntityHit(Position position){
+        for(SingleShot singleShot : singleShots){
+            if(singleShot.position.equals(position))
+                return true;
+        }
+        for(DoubleShot doubleShot : doubleShots){
+            if(doubleShot.position.equals(position))
+                return true;
+        }
+        for(BurstShot burstShot : burstShots){
+            if(burstShot.position.equals(position))
+                return true;
+        }
+        return false;
+    }
+
     public void manageAsteroid() throws InterruptedException {
         for(Asteroid asteroid : asteroids){
             asteroid.moveEnemy();
-            if(asteroid.checkImpact(asteroid, player) || isHeightExceeded(asteroid.getPosition())){
+            if(asteroid.checkImpact(asteroid, player) || isHeightExceeded(asteroid.getPosition()) || isEntityHit(asteroid.getPosition())){
                 asteroids.remove(asteroid);
                 break;
             }
