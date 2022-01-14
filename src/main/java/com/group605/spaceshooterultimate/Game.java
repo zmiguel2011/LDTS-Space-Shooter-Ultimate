@@ -53,6 +53,7 @@ public class Game {
     public void closeTerminal() {
         try{
             screen.close(); // screen must be started
+            running = false;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +107,6 @@ public class Game {
                 closeTerminal();
             }
             KeyStroke key = screen.pollInput(); //Reads the Key input; NOTE: pollInput()-> If no Input was read then it returns null
-            while(screen.pollInput()!=null);
             if(key == null)
                 continue;
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')   { //Verifies if it was 'q'

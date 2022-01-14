@@ -25,9 +25,8 @@ public class Space {
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
-    private int ASTEROID_NUMBER = 10; //Sets how many Asteroids will spawn together
+    private int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
     private int score = 0;
-
 
     //TEXT OFFSET VALUES
     private int LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE;
@@ -56,10 +55,10 @@ public class Space {
         LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE = height-10;
         CYCLEAMMO_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         CYCLEAMMO_TEXT_DISPLAY_Y_OFFSET_VALUE = height-13;
+        SCORE_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
+        SCORE_TEXT_DISPLAY_Y_OFFSET_VALUE = height-16;
         SESSIONINFO_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE = height-20;
-        SCORE_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
-        SCORE_TEXT_DISPLAY_Y_OFFSET_VALUE = height-15;
     }
 
     public void draw(TextGraphics graphics) throws IOException {
