@@ -24,7 +24,7 @@ public class Space {
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
-    private final int ASTEROID_NUMBER = 10; //Sets how many Asteroids will spawn together
+    private final int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
 
 
     //TEXT OFFSET VALUES
@@ -138,8 +138,23 @@ public class Space {
     public void createAsteroids(){
         Random random = new Random();
 
+        //TO BE ADDED : HABILITY TO GENERATE ASTEROIDS WITH DIFERENT SIZES
+        /*
+        String auxstr;
+        int aux = random.nextInt(3);
+
+        if(aux == 3){
+            auxstr = "large";
+        } else if (aux == 2){
+            auxstr = "medium";
+        } else{
+            auxstr = "small";
+        }
+         */
+
+
         while(asteroids.size() < ASTEROID_NUMBER){
-            asteroids.add(new Asteroid(random.nextInt(width+1), (height-height)+1, 100, "default"));
+            asteroids.add(new Asteroid(random.nextInt(width+1), (height-height)+1, 100, "auxstr"));
         }
     }
 
@@ -207,6 +222,9 @@ public class Space {
         else
             return false;
     }
+
+    //TO DO: ADD BULLET DAMAGE
+    //IDEA : RETURN BULLET DAMAGE INSTEAD OF TRUE OR FALSE AND THEN DEAL THAT DAMAGE TO THE ASTEROID
 
     private boolean isEntityHit(Position position){
         for(SingleShot singleShot : singleShots){

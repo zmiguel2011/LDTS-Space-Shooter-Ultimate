@@ -7,13 +7,19 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
-import jdk.swing.interop.SwingInterOpUtils;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.io.IOException;
 
 public class Game {
 
     private Screen screen;
+
+    //FPS Variables
+    private boolean running = false;
+    private int FPS = 30;
+    private double averageFPS;
+
 
     Space space = new Space(100,40);
 
@@ -60,9 +66,41 @@ public class Game {
 
     public void run() throws IOException, InterruptedException{
         createTerminal();
-        while(true){
+        running = true;
+
+        long startTime;
+        long URDTimeMillis;
+        long waitTime;
+        long totalTime = 0;
+
+        int frameCount = 0;
+        int maxFrameCount = 30;
+
+        long targetTime = 1000 / FPS;
+
+        // GAME LOOP
+        while(running){
+
+            startTime = System.nanoTime();
+
             draw(); //Function that draws the objects on the screen
             asteroids();
+            URDTimeMillis = (System.nanoTime() - startTime) / 1000000;
+            waitTime = targetTime - URDTimeMillis;
+
+            try {
+                Thread.sleep(waitTime);
+            } catch (Exception e){
+            }
+
+            totalTime += System.nanoTime() - startTime;
+            frameCount++;
+            if(frameCount == maxFrameCount){
+                averageFPS = 1000.0 / ((totalTime / frameCount) / 100000000);
+                frameCount = 0;
+                totalTime = 0;
+
+            }
             if(space.getPlayer().getLifes() == 0){
                 System.out.println("GAME OVER! YOU LOST!");
                 closeTerminal();
