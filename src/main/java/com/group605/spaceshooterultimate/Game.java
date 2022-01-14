@@ -101,18 +101,20 @@ public class Game {
                 totalTime = 0;
 
             }
-            if(space.getPlayer().getLifes() == 0){
+            if(space.getPlayer().getLives() == 0){
                 System.out.println("GAME OVER! YOU LOST!");
                 closeTerminal();
             }
             KeyStroke key = screen.pollInput(); //Reads the Key input; NOTE: pollInput()-> If no Input was read then it returns null
+            while(screen.pollInput()!=null);
             if(key == null)
                 continue;
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')   { //Verifies if it was 'q'
                 closeTerminal();
+                running = false;
             }
             if (key.getKeyType() == KeyType.EOF) { //Verifies if EOF got reached
-                break;
+                running = false;
             }
             processKey(key);
         }
