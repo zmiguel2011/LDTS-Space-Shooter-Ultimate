@@ -24,8 +24,7 @@ public class Space {
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
-    private final int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
-
+    private final int ASTEROID_NUMBER = 10; //Sets how many Asteroids will spawn together
 
     //TEXT OFFSET VALUES
     private int LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE;
@@ -34,6 +33,7 @@ public class Space {
     private int CYCLEAMMO_TEXT_DISPLAY_Y_OFFSET_VALUE;
     private int SESSIONINFO_TEXT_DISPLAY_X_OFFSET_VALUE;
     private int SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE;
+
 
     Space(int width, int height){
         this.width = width;
@@ -98,12 +98,13 @@ public class Space {
         //Lives Remaining Text
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE, LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE), player.displayLifes());
+        graphics.putString(new TerminalPosition(LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE, LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE), "LIVES REMAINING: " + player.displayLifes());
 
         //Cycle Ammo Type Text
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(CYCLEAMMO_TEXT_DISPLAY_X_OFFSET_VALUE, CYCLEAMMO_TEXT_DISPLAY_Y_OFFSET_VALUE), "ESC- FIRE; F1- SINGLE; F2- DOUBLE; F3- BURST");
+
     }
 
     public void processKey(KeyStroke key){
@@ -138,7 +139,7 @@ public class Space {
     public void createAsteroids(){
         Random random = new Random();
 
-        //TO BE ADDED : HABILITY TO GENERATE ASTEROIDS WITH DIFERENT SIZES
+        //TO BE ADDED : ABILITY TO GENERATE ASTEROIDS WITH DIFFERENT SIZES
         /*
         String auxstr;
         int aux = random.nextInt(3);

@@ -16,7 +16,6 @@ public class Spaceship extends Enemy {
 
     //public class SpaceshipSub extends Bullet { }
 
-    @Override
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);

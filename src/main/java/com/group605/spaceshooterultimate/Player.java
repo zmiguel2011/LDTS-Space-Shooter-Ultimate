@@ -14,7 +14,7 @@ public class Player extends Entity{
         super(x,y);
     }
 
-    public int getLifes() {
+    public int getLives() {
         return lives;
     }
 
@@ -46,18 +46,6 @@ public class Player extends Entity{
 
     //Quick Easy Way to Display Player Amount of Lives Remaining in an Arcade Way
     public String displayLifes(){
-
-        if(this.lives == 3){
-            return lifestr = "LIVES REMAINING: 3";
-        }
-        else if(this.lives == 2){
-            return lifestr = "LIVES REMAINING: 2";
-        }
-        else if(this.lives == 1){
-            return lifestr = "LIVES REMAINING: 1";
-        }
-        else {
-            return lifestr = "LIVES REMAINING: 0";
-        }
+        return Integer.toString(getLives());
     }
 }
