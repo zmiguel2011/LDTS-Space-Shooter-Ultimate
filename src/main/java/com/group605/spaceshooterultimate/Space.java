@@ -7,6 +7,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class Space {
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
-    private final int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
+    private int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
+    private int score = 0;
 
 
     //TEXT OFFSET VALUES
@@ -34,6 +36,9 @@ public class Space {
     private int CYCLEAMMO_TEXT_DISPLAY_Y_OFFSET_VALUE;
     private int SESSIONINFO_TEXT_DISPLAY_X_OFFSET_VALUE;
     private int SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE;
+    private int SCORE_TEXT_DISPLAY_X_OFFSET_VALUE;
+    private int SCORE_TEXT_DISPLAY_Y_OFFSET_VALUE;
+
 
     Space(int width, int height){
         this.width = width;
@@ -52,6 +57,8 @@ public class Space {
         CYCLEAMMO_TEXT_DISPLAY_Y_OFFSET_VALUE = height-13;
         SESSIONINFO_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE = height-20;
+        SCORE_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
+        SCORE_TEXT_DISPLAY_Y_OFFSET_VALUE = height-15;
     }
 
     public void draw(TextGraphics graphics) throws IOException {
@@ -94,6 +101,11 @@ public class Space {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(SESSIONINFO_TEXT_DISPLAY_X_OFFSET_VALUE, SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE), "SESSION INFO: ");
+
+        //Score Text
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(SCORE_TEXT_DISPLAY_X_OFFSET_VALUE, SCORE_TEXT_DISPLAY_Y_OFFSET_VALUE), displayScore());
 
         //Lives Remaining Text
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
@@ -228,18 +240,35 @@ public class Space {
 
     private boolean isEntityHit(Position position){
         for(SingleShot singleShot : singleShots){
-            if(singleShot.position.equals(position))
+            if(singleShot.position.equals(position)) {
+                ScoreIncrement(100);
                 return true;
+            }
         }
         for(DoubleShot doubleShot : doubleShots){
-            if(doubleShot.position.equals(position))
+            if(doubleShot.position.equals(position)) {
+                ScoreIncrement(100);
                 return true;
+            }
         }
         for(BurstShot burstShot : burstShots){
-            if(burstShot.position.equals(position))
+            if(burstShot.position.equals(position)) {
+                ScoreIncrement(100);
                 return true;
+            }
         }
         return false;
+    }
+
+    private void ScoreIncrement(int inc) {
+        score = score + inc;
+
+    }
+    
+    private String displayScore() {
+        String scoreText;
+        scoreText = String.valueOf(score);
+        return "SCORE: " +scoreText;
     }
 
     public void manageAsteroid() throws InterruptedException {
