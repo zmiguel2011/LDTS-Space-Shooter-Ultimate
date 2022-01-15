@@ -120,7 +120,7 @@ public class Space {
         //Lives Remaining Text
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE, LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE), "LIVES REMAINING: " + player.displayLifes());
+        graphics.putString(new TerminalPosition(LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE, LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE), "LIVES REMAINING: " + player.displayLives());
 
         //Cycle Ammo Type Text
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));

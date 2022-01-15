@@ -10,7 +10,7 @@ public class Player extends Entity{
     int lives = 3;
     String lifestr = "3";
 
-    Player(int x, int y){
+    public Player(int x, int y){
         super(x,y);
     }
 
@@ -18,7 +18,7 @@ public class Player extends Entity{
         return lives;
     }
 
-    public void setLifes(int lifes) {
+    public void setLives(int lifes) {
         this.lives = lifes;
     }
 
@@ -45,7 +45,7 @@ public class Player extends Entity{
     }
 
     //Quick Easy Way to Display Player Amount of Lives Remaining in an Arcade Way
-    public String displayLifes(){
+    public String displayLives(){
         return Integer.toString(getLives());
     }
 }
