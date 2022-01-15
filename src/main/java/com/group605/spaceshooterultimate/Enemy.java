@@ -20,9 +20,7 @@ public abstract class Enemy extends Entity {
 
     public abstract void draw(TextGraphics graphics);
 
-    public void moveEnemy(){
-        this.position.setY(this.position.getY()+1);
-    }
+    public void moveEnemy(){this.position.setY(this.position.getY()+1);}
 
     public boolean checkImpact(Enemy enemy, Player player) {
         if(enemy.position.equals(player.position)) {

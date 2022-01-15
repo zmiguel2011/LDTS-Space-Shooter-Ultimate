@@ -99,12 +99,6 @@ public class Space {
             burstShot.move();
         }
 
-        //Draw Enemy Shot Bullets
-        for(EnemyShot enemyShot : enemyShots){
-            enemyShot.draw(graphics);
-            enemyShot.move();
-        }
-
         //Draws Asteroids
         for(Asteroid asteroid : asteroids){
             asteroid.draw(graphics);
@@ -113,6 +107,18 @@ public class Space {
         //Draws Spaceships
         for(Spaceship spaceship : spaceships){
             spaceship.draw(graphics);
+        }
+
+        //Draw Enemy Shot Bullets
+        for(EnemyShot enemyShot : enemyShots){
+            if(canEntityMove(enemyShot.position)){
+                enemyShot.move();
+            }
+            else {
+                enemyShots.remove(enemyShot);
+                break;
+            }
+            enemyShot.draw(graphics);
         }
 
         //Draws Character
@@ -230,9 +236,14 @@ public class Space {
             burstShotFire();
         }
     }
+
+
+    //TO DO: Add a timer between Enemy Shots!!!
+
     /*
     private void SpaceshipFire(Spaceship spaceship){
         while(){
+            //Thread.Sleep(); ???
             EnemyShotFire(spaceship);
         }
     }
@@ -325,6 +336,7 @@ public class Space {
     private boolean isPlayerHit(Position position){
         for(EnemyShot enemyShot : enemyShots) {
             if (enemyShot.checkBulletImpact(position)) {
+                enemyShots.remove(enemyShot);
                 return true;
             }
         }
@@ -369,9 +381,9 @@ public class Space {
 
     public void manageSpaceship() throws InterruptedException {
         for(Spaceship spaceship : spaceships){
-            spaceship.moveEnemy();
+            //if(canEntityMove(spaceship.position)) spaceship.moveEnemy();
             EnemyShotFire(spaceship);
-            if(spaceship.checkImpact(spaceship, player) || isHeightExceeded(spaceship.getPosition()) || isEntityHit(spaceship.getPosition())){
+            if(spaceship.checkImpact(spaceship, player) || isEntityHit(spaceship.getPosition())){
                 spaceships.remove(spaceship);
                 break;
             }

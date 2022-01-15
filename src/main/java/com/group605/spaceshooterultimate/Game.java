@@ -103,7 +103,7 @@ public class Game {
                 totalTime = 0;
 
             }
-            if(space.getPlayer().getLives() == 0){
+            if(space.getPlayer().getLives() <= 0){
                 System.out.println("GAME OVER! YOU LOST!");
                 if (space.getScore() > space.getHighScore()) space.SetHighScore();
                 System.out.println("YOU SET A NEW HIGH SCORE: " +space.getHighScore());

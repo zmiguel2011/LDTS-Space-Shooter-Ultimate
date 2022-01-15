@@ -7,6 +7,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 
+import java.util.Random;
+
 public class Spaceship extends Enemy {
 
     Spaceship(int x, int y, int health) {
@@ -20,4 +22,9 @@ public class Spaceship extends Enemy {
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "S");
     }
 
+    @Override
+    public void moveEnemy(){
+        Random random = new Random();
+        this.position.setX(this.position.getY()+ random.nextInt(100+1));
+    }
 }
