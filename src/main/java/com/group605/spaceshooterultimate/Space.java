@@ -25,8 +25,9 @@ public class Space {
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
-    private int ASTEROID_NUMBER = 1; //Sets how many Asteroids will spawn together
+    private int ASTEROID_NUMBER = 10; //Sets how many Asteroids will spawn together
     private int score = 0;
+    private int highScore = 0;
 
     //TEXT OFFSET VALUES
     private int LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE;
@@ -37,6 +38,8 @@ public class Space {
     private int SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE;
     private int SCORE_TEXT_DISPLAY_X_OFFSET_VALUE;
     private int SCORE_TEXT_DISPLAY_Y_OFFSET_VALUE;
+    private int HIGHSCORE_TEXT_DISPLAY_X_OFFSET_VALUE;
+    private int HIGHSCORE_TEXT_DISPLAY_Y_OFFSET_VALUE;
 
 
 
@@ -57,8 +60,10 @@ public class Space {
         CYCLEAMMO_TEXT_DISPLAY_Y_OFFSET_VALUE = height-13;
         SCORE_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         SCORE_TEXT_DISPLAY_Y_OFFSET_VALUE = height-16;
+        HIGHSCORE_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
+        HIGHSCORE_TEXT_DISPLAY_Y_OFFSET_VALUE = height-19;
         SESSIONINFO_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
-        SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE = height-20;
+        SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE = height-22;
     }
 
     public void draw(TextGraphics graphics) throws IOException {
@@ -101,6 +106,11 @@ public class Space {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(SESSIONINFO_TEXT_DISPLAY_X_OFFSET_VALUE, SESSIONINFO_TEXT_DISPLAY_Y_OFFSET_VALUE), "SESSION INFO: ");
+
+        //HighScore Text
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(HIGHSCORE_TEXT_DISPLAY_X_OFFSET_VALUE, HIGHSCORE_TEXT_DISPLAY_Y_OFFSET_VALUE), displayHighScore());
 
         //Score Text
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
@@ -263,7 +273,22 @@ public class Space {
 
     private void ScoreIncrement(int inc) {
         score = score + inc;
+    }
+    protected void SetHighScore() {
+        highScore = score;
+    }
 
+    protected int getHighScore() {
+        return highScore;
+    }
+    protected int getScore() {
+        return score;
+    }
+
+    private String displayHighScore() {
+        String highScoreText;
+        highScoreText = String.valueOf(highScore);
+        return "HIGHSCORE: " +highScoreText;
     }
     
     private String displayScore() {

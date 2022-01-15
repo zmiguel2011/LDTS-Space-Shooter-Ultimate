@@ -17,7 +17,7 @@ public class Game {
 
     //FPS Variables
     private boolean running = false;
-    private int FPS = 30;
+    private final int FPS = 30;
     private double averageFPS;
 
 
@@ -104,6 +104,8 @@ public class Game {
             }
             if(space.getPlayer().getLives() == 0){
                 System.out.println("GAME OVER! YOU LOST!");
+                if (space.getScore() > space.getHighScore()) space.SetHighScore();
+                System.out.println("YOU SET A NEW HIGH SCORE: " +space.getHighScore());
                 closeTerminal();
             }
             KeyStroke key = screen.pollInput(); //Reads the Key input; NOTE: pollInput()-> If no Input was read then it returns null
