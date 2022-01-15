@@ -4,20 +4,22 @@ import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 
-public class Spaceship extends Enemy {
+public class EnemyShot extends Bullet{
 
-    Spaceship(int x, int y, int health) {
-        super(x, y, health);
+    EnemyShot(int x, int y){
+        super(x, y);
     }
 
 
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "S");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "|");
     }
 
+    @Override
+    public void move(){
+        this.position.setY(this.position.getY()+1);
+    }
 }

@@ -7,15 +7,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class SingleShot extends Bullet {
 
-    SingleShot(int x, int y){
+    SingleShot(int x, int y) {
         super(x, y);
     }
 
-
-    public void draw(TextGraphics graphics){
+    public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "|");
     }
-
 }

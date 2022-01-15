@@ -18,8 +18,9 @@ public abstract class Bullet {
         return this.damage;
     }
 
-    public void checkBulletImpact(Position position){
-
+    public boolean checkBulletImpact(Position position){
+        if (this.position.equals(position)) return true;
+        return false;
     }
 
     public void move(){
