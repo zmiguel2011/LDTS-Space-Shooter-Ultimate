@@ -23,7 +23,7 @@ public abstract class Enemy extends Entity {
     public void moveEnemy(){this.position.setY(this.position.getY()+1);}
 
     public boolean checkImpact(Enemy enemy, Player player) {
-        if(enemy.position.equals(player.position)) {
+        if(enemy.position.equals(player.getPosition())) {
             player.lives--;
             return true;
         }
