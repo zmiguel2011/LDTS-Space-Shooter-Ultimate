@@ -7,6 +7,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
+import javax.sql.ConnectionPoolDataSource;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.Time;
@@ -240,14 +241,6 @@ public class Space {
 
     //TO DO: Add a timer between Enemy Shots!!!
 
-    /*
-    private void SpaceshipFire(Spaceship spaceship){
-        while(){
-            //Thread.Sleep(); ???
-            EnemyShotFire(spaceship);
-        }
-    }
-    */
 
     private List<SingleShot> singleShotFire(){
         singleShots.add(new SingleShot(player.position.getX(), player.position.getY()-1));
@@ -266,8 +259,17 @@ public class Space {
         return burstShots;
     }
 
-    private List<EnemyShot> EnemyShotFire(Spaceship spaceship){
-        enemyShots.add(new EnemyShot(spaceship.position.getX(), spaceship.position.getY()+2));
+    private List<EnemyShot> EnemyShotFire(Spaceship spaceship) {
+        Random random = new Random();
+        int distance = random.nextInt(5);
+
+        if (enemyShots.size() == 0) {
+            enemyShots.add(new EnemyShot(spaceship.position.getX(), spaceship.position.getY()+1));
+        }
+        else if (enemyShots.get(enemyShots.size() - 1).position.getY() - player.position.getY() == distance) {
+            enemyShots.add(new EnemyShot(spaceship.position.getX(), spaceship.position.getY()+1));
+        }
+
         return enemyShots;
     }
 
@@ -379,7 +381,7 @@ public class Space {
         }
     }
 
-    public void manageSpaceship() throws InterruptedException {
+    public void manageSpaceship() {
         for(Spaceship spaceship : spaceships){
             //if(canEntityMove(spaceship.position)) spaceship.moveEnemy();
             EnemyShotFire(spaceship);
