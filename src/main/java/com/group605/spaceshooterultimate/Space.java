@@ -25,7 +25,6 @@ public class Space {
     private List<SingleShot> singleShots;
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
-    private List<EnemyShot> enemyShots;
     private List<Asteroid> asteroids;
     private List<Spaceship> spaceships;
     private int ASTEROID_NUMBER = 5; //Sets how many Asteroids will spawn together
@@ -55,7 +54,6 @@ public class Space {
         this.singleShots = new ArrayList<>();
         this.doubleShots = new ArrayList<>();
         this.burstShots = new ArrayList<>();
-        this.enemyShots = new ArrayList<>();
         this.ammotype = 1; //Sets Single as Default Ammo Type
         this.asteroids = new ArrayList<>();
         this.spaceships = new ArrayList<>();
@@ -111,16 +109,19 @@ public class Space {
         }
 
         //Draw Enemy Shot Bullets
-        for(EnemyShot enemyShot : enemyShots){
-            if(canEntityMove(enemyShot.position)){
-                enemyShot.move();
+        for (Spaceship spaceship :  spaceships) {
+            for(EnemyShot enemyShot : spaceship.getEnemyShots()){
+                if(canEntityMove(enemyShot.position)){
+                    enemyShot.move();
+                }
+                else {
+                    spaceship.getEnemyShots().remove(enemyShot);
+                    break;
+                }
+                enemyShot.draw(graphics);
             }
-            else {
-                enemyShots.remove(enemyShot);
-                break;
-            }
-            enemyShot.draw(graphics);
         }
+
 
         //Draws Character
         player.draw(graphics);
@@ -239,7 +240,6 @@ public class Space {
     }
 
 
-    //TO DO: Add a timer between Enemy Shots!!!
 
 
     private List<SingleShot> singleShotFire(){
@@ -259,18 +259,17 @@ public class Space {
         return burstShots;
     }
 
-    private List<EnemyShot> EnemyShotFire(Spaceship spaceship) {
+    private void EnemyShotFire(Spaceship spaceship) {
         Random random = new Random();
         int distance = random.nextInt(5);
 
-        if (enemyShots.size() == 0) {
-            enemyShots.add(new EnemyShot(spaceship.position.getX(), spaceship.position.getY()+1));
+        if (spaceship.getEnemyShots().size() == 0) {
+            spaceship.addEnemyShot(spaceship.position.getX(), spaceship.position.getY()+1);
         }
-        else if (enemyShots.get(enemyShots.size() - 1).position.getY() - player.position.getY() == distance) {
-            enemyShots.add(new EnemyShot(spaceship.position.getX(), spaceship.position.getY()+1));
+        else if (spaceship.getEnemyShots().get(spaceship.getEnemyShots().size() - 1).position.getY() - player.position.getY() == distance) {
+            spaceship.getEnemyShots().add(new EnemyShot(spaceship.position.getX(), spaceship.position.getY()+1));
         }
 
-        return enemyShots;
     }
 
 
@@ -336,10 +335,12 @@ public class Space {
     }
 
     private boolean isPlayerHit(Position position){
-        for(EnemyShot enemyShot : enemyShots) {
-            if (enemyShot.checkBulletImpact(position)) {
-                enemyShots.remove(enemyShot);
-                return true;
+        for (Spaceship spaceship : spaceships) {
+            for(EnemyShot enemyShot : spaceship.getEnemyShots()) {
+                if (enemyShot.checkBulletImpact(position)) {
+                    spaceship.getEnemyShots().remove(enemyShot);
+                    return true;
+                }
             }
         }
         return false;
@@ -383,7 +384,6 @@ public class Space {
 
     public void manageSpaceship() {
         for(Spaceship spaceship : spaceships){
-            //if(canEntityMove(spaceship.position)) spaceship.moveEnemy();
             EnemyShotFire(spaceship);
             if(spaceship.checkImpact(spaceship, player) || isEntityHit(spaceship.getPosition())){
                 spaceships.remove(spaceship);
