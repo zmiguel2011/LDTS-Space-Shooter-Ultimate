@@ -37,8 +37,17 @@ public class Spaceship extends Enemy {
     @Override
     public void moveEnemy(){
         Random random = new Random();
-        this.position.setX(this.position.getY()+ random.nextInt(100+1));
+        int val = random.nextInt(3);
+        if(val == 2){
+            //It will move right
+            this.position.setX(this.position.getX()+ 1);
+        } else if(val == 1){
+            //It will move left
+            this.position.setX(this.position.getX()- 1);
+        } else {
+            //It will stay still
+            this.position.setX(this.position.getX());
+        }
     }
-
 
 }

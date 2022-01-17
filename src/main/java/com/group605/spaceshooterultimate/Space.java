@@ -30,6 +30,7 @@ public class Space {
     private List<Item> items;
     private int ASTEROID_NUMBER = 5; //Sets how many Asteroids will spawn together
     private int SPACESHIP_NUMBER = 3; //Sets how many SpaceShip will spawn together
+    private final int MAX_MOVEMENT_NUMBER = 5;
     private int ITEM_NUMBER = 2;
     private int item_score; // checks if item for certain score has already spawned;
     private int score = 0;
@@ -402,7 +403,7 @@ public class Space {
     public void manageAsteroid() throws InterruptedException {
         for(Asteroid asteroid : asteroids){
             asteroid.moveEnemy();
-            if(asteroid.checkImpact(asteroid, player) || isHeightExceeded(asteroid.getPosition()) || isEntityHit(asteroid.getPosition())){
+            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || isEntityHit(asteroid.getPosition())){
                 asteroids.remove(asteroid);
                 break;
             }
@@ -410,9 +411,15 @@ public class Space {
     }
 
     public void manageSpaceship() {
+        //This will randomize a SpaceShip and move it
+        //As well as randomize the amount of times that movement will be repeated in order to avoid a very similar movement for every SpaceShip
+        Random random1 = new Random();
+        Random random2 = new Random();
+        spaceships.get(random1.nextInt(spaceships.size())).moveEnemy();
+
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
-            if(spaceship.checkImpact(spaceship, player) || isEntityHit(spaceship.getPosition())){
+            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isEntityHit(spaceship.getPosition())){
                 spaceships.remove(spaceship);
                 break;
             }
@@ -433,7 +440,6 @@ public class Space {
                 items.remove(item);
                 break;
             }
-            if(item.s)
         }
     }
     public Player getPlayer(){

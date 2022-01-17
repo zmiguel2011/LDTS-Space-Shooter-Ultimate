@@ -8,7 +8,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Player extends Entity{
     int lives = 3;
-    String lifestr = "3";
 
     public Player(int x, int y){
         super(x,y);
