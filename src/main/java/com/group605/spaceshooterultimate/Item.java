@@ -7,11 +7,11 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Item {
     private Position position;
-    private int scoreDisappear;
+    protected int disappearTime;
 
-    Item(int x, int y, int scoreDisappear){
+    Item(int x, int y, int dis){
         position = new Position(x,y);
-        this.scoreDisappear = scoreDisappear;
+        this.disappearTime = dis;
     }
 
     boolean checkCollision(Position position){
@@ -22,9 +22,6 @@ public class Item {
     }
     public Position getPosition(){
         return this.position;
-    }
-    public void move(){
-         this.position.setY(this.position.getY() + 1);
     }
     void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
