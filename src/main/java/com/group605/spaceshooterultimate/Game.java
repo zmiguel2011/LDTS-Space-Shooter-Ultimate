@@ -7,8 +7,11 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 
-import java.awt.image.AreaAveragingScaleFilter;
+
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class Game {
@@ -28,11 +31,28 @@ public class Game {
             TerminalSize terminalSize = new TerminalSize(200, 60);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
+            terminalFactory.setForceAWTOverSwing(true);
+
+            AWTTerminalFontConfiguration font = loadSpaceShooterUltimateFont();
+
+            terminalFactory.setTerminalEmulatorFontConfiguration(font);
+
             screen = new TerminalScreen(terminal);
 
-        } catch (IOException e) {
+
+        } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    public AWTTerminalFontConfiguration loadSpaceShooterUltimateFont() throws FontFormatException, IOException {
+        File fontFile = new File("resources/Font/nordic.ttf");
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
     }
 
     public Screen getScreen(){
