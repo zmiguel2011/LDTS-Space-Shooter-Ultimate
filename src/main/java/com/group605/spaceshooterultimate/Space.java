@@ -27,8 +27,11 @@ public class Space {
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
     private List<Spaceship> spaceships;
+    private List<Item> items;
     private int ASTEROID_NUMBER = 5; //Sets how many Asteroids will spawn together
-    private int SPACESHIP_NUMBER = 3; //Sets how many Asteroids will spawn together
+    private int SPACESHIP_NUMBER = 3; //Sets how many SpaceShip will spawn together
+    private int ITEM_NUMBER = 2;
+    private int item_score; // checks if item for certain score has already spawned;
     private int score = 0;
     private int highScore = 0;
 
@@ -57,6 +60,8 @@ public class Space {
         this.ammotype = 1; //Sets Single as Default Ammo Type
         this.asteroids = new ArrayList<>();
         this.spaceships = new ArrayList<>();
+        this.items = new ArrayList<>();
+        this.item_score = 0;
 
         LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
         LIFESREMAINING_TEXT_DISPLAY_Y_OFFSET_VALUE = height-10;
@@ -79,7 +84,11 @@ public class Space {
         for(Border border : borders){
             border.draw(graphics);
         }
-
+        //Draw Item
+        for (Item item : items){
+            item.draw(graphics);
+            item.move();
+        }
         //Draw Single Shot Bullets
         for(SingleShot singleShot : singleShots){
             singleShot.draw(graphics);
@@ -308,7 +317,6 @@ public class Space {
         else
             return false;
     }
-
     //TO DO: ADD BULLET DAMAGE
     //IDEA : RETURN BULLET DAMAGE INSTEAD OF TRUE OR FALSE AND THEN DEAL THAT DAMAGE TO THE ASTEROID
 
@@ -345,6 +353,25 @@ public class Space {
         }
         return false;
     }
+    public boolean canSpawnItem(){
+        if(score % 500 == 0 && score != 0 && item_score != score){
+            item_score = score;
+            return true;
+        }
+        return false;
+    }
+    public void createItem(){
+
+        if(canSpawnItem()){
+            Random random = new Random();
+            int spawnX = random.nextInt(100 - 1) + 1;
+            int spawnY = random.nextInt(100 - 1) + 1;
+            int scoredis = random.nextInt(500 - 200) + 200;
+            items.add(new Item(spawnX, spawnY, scoredis));
+
+        }
+    }
+
 
     private void ScoreIncrement(int inc) {
         score = score + inc;
@@ -395,6 +422,20 @@ public class Space {
         }
     }
 
+    public void manageItems(){
+        for(Item item : items){
+            if(isHeightExceeded(item.getPosition())){
+                items.remove(item);
+                break;
+            }
+            if(item.checkCollision(player.getPosition())){
+                player.lives++;
+                items.remove(item);
+                break;
+            }
+            if(item.s)
+        }
+    }
     public Player getPlayer(){
         return player;
     }

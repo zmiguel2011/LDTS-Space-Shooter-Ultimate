@@ -87,6 +87,7 @@ public class Game {
             draw(); //Function that draws the objects on the screen
             asteroids();
             spaceships();
+            items();
             URDTimeMillis = (System.nanoTime() - startTime) / 1000000;
             waitTime = targetTime - URDTimeMillis;
 
@@ -133,6 +134,10 @@ public class Game {
         space.manageSpaceship();
     }
 
+    private void items() throws InterruptedException{
+        space.createItem();
+        space.manageItems();
+    }
     private void processKey(KeyStroke key){
         space.processKey(key);
     }
