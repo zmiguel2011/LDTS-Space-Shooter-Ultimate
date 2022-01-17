@@ -210,7 +210,7 @@ public class Space {
 
 
         while(asteroids.size() < ASTEROID_NUMBER){
-            asteroids.add(new Asteroid(random.nextInt(width+1), (height-height)+1, 100, "auxstr"));
+            asteroids.add(new Asteroid(random.nextInt(width), (height-height)+1, 100, "auxstr"));
         }
     }
 
@@ -233,7 +233,7 @@ public class Space {
 
 
         while(spaceships.size() < SPACESHIP_NUMBER){
-            spaceships.add(new Spaceship(random.nextInt(width+1), (height-height)+1, 100));
+            spaceships.add(new Spaceship(random.nextInt(width), (height-height)+1, 100));
         }
     }
 
@@ -311,12 +311,6 @@ public class Space {
         return true;
     }
 
-    private boolean isHeightExceeded(Position position){
-        if(position.getY() >= height)
-            return true;
-        else
-            return false;
-    }
     //TO DO: ADD BULLET DAMAGE
     //IDEA : RETURN BULLET DAMAGE INSTEAD OF TRUE OR FALSE AND THEN DEAL THAT DAMAGE TO THE ASTEROID
 
@@ -424,7 +418,10 @@ public class Space {
         //As well as randomize the amount of times that movement will be repeated in order to avoid a very similar movement for every SpaceShip
         Random random1 = new Random();
         Random random2 = new Random();
-        spaceships.get(random1.nextInt(spaceships.size())).moveEnemy();
+        for(int i = 0; i<random2.nextInt(MAX_MOVEMENT_NUMBER+1); i++){
+            spaceships.get(random1.nextInt(spaceships.size())).moveEnemy();
+        }
+        //
 
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
@@ -440,22 +437,15 @@ public class Space {
 
     public void manageItems(){
         for(Item item : items){
-            if(isHeightExceeded(item.getPosition())){
-                items.remove(item);
-                break;
-            }
             if(item.checkCollision(player.getPosition())){
                 player.lives++;
                 items.remove(item);
                 break;
             }
-<<<<<<< HEAD
-=======
             if(item.disappearTime <= score){
                 items.remove(item);
                 break;
             }
->>>>>>> e7afdce48bfa32f6e91e6e05cf05bcfffcf3dde4
         }
     }
     public Player getPlayer(){

@@ -14,7 +14,7 @@ public class Border extends Entity{
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#ff0084"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "||");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "|");
     }
 
 }
