@@ -10,7 +10,7 @@ This project was developed by [Filipe Cardoso](https://github.com/filipecardoso0
 
 - **Single shooting** - Shoots one bullet at once.
 <p align="center" justify="center">
-  <img src="Resources/Images/singleshot.png"/>
+  <img src="resources/Images/singleshot.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 1. Single Shot</i></b>
@@ -20,7 +20,7 @@ This project was developed by [Filipe Cardoso](https://github.com/filipecardoso0
 
 - **Double shooting** - Shoots two bullets at once. However it deals less damage.
 <p align="center" justify="center">
-  <img src="Resources/Images/doubleshot.png"/>
+  <img src="resources/Images/doubleshot.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 2. Double Shot</i></b>
@@ -31,7 +31,7 @@ This project was developed by [Filipe Cardoso](https://github.com/filipecardoso0
 - **Burst shooting** - Shoots bullets in burst. However it deals less damage.
 
 <p align="center" justify="center">
-  <img src="Resources/Images/burstshot.png"/>
+  <img src="resources/Images/burstshot.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 3. Bust Shot</i></b>
@@ -42,7 +42,7 @@ This project was developed by [Filipe Cardoso](https://github.com/filipecardoso0
 - **Asteroids** - asteroids will spawn randomly. Try to dodge them.
 
 <p align="center" justify="center">
-  <img src="Resources/Images/asteroid.png"/>
+  <img src="resources/Images/asteroid.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 4. Asteroid</i></b>
@@ -55,7 +55,7 @@ This project was developed by [Filipe Cardoso](https://github.com/filipecardoso0
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 - **Items** - every once in a while a item will spawn to help the player survive.
 <p align="center" justify="center">
-  <img src="Resources/Images/itemmockup.png"/>
+  <img src="resources/Images/itemmockup.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 5. Item Mock up</i></b>
@@ -66,7 +66,7 @@ This project was developed by [Filipe Cardoso](https://github.com/filipecardoso0
 - **Enemy spaceships** - Unlike asteroids enemy spaceships will shoot at you.
 
 <p align="center" justify="center">
-  <img src="Resources/Images/spaceshipgui.png"/>
+  <img src="resources/Images/spaceshipgui.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 6. Spaceship Mock up</i></b>
@@ -83,7 +83,7 @@ This project was developed by [Filipe Cardoso](https://github.com/filipecardoso0
 The following figure shows how the pattern’s roles were mapped to the application classes.
 
 <p align="center" justify="center">
-  <img src="Resources/Images/UML.png"/>
+  <img src="resources/Images/UML.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 7. uml diagram</i></b>
@@ -95,7 +95,7 @@ The following figure shows how the pattern’s roles were mapped to the applicat
 
 - Screenshot of coverage report.
 <p align="center" justify="center">
-  <img src="Resources/Images/tests.png"/>
+  <img src="resources/Images/tests.png"/>
 </p>
 <p align="center">
   <b><i>Imagem 8. test.png</i></b>
