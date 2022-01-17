@@ -88,7 +88,6 @@ public class Space {
         //Draw Item
         for (Item item : items){
             item.draw(graphics);
-            item.move();
         }
         //Draw Single Shot Bullets
         for(SingleShot singleShot : singleShots){
@@ -355,7 +354,7 @@ public class Space {
         return false;
     }
     public boolean canSpawnItem(){
-        if(score % 500 == 0 && score != 0 && item_score != score){
+        if(score % 100 == 0 && score != 0 && item_score != score && items.size() < ITEM_NUMBER){
             item_score = score;
             return true;
         }
@@ -365,10 +364,20 @@ public class Space {
 
         if(canSpawnItem()){
             Random random = new Random();
-            int spawnX = random.nextInt(100 - 1) + 1;
-            int spawnY = random.nextInt(100 - 1) + 1;
-            int scoredis = random.nextInt(500 - 200) + 200;
-            items.add(new Item(spawnX, spawnY, scoredis));
+            int spawnX;
+            int spawnY;
+            while(true){
+                spawnX = random.nextInt(98 - 2) + 2;
+                spawnY = random.nextInt(38 - 2) + 2;
+                for (Item item : items){
+                    if(item.getPosition().getY() == spawnY && item.getPosition().getX() == spawnX){
+                        break;
+                    }
+                }
+                break;
+            }
+            int disTime = score + random.nextInt(300 - 100) + 100;
+            items.add(new Item(spawnX, spawnY,disTime));
 
         }
     }
@@ -440,6 +449,13 @@ public class Space {
                 items.remove(item);
                 break;
             }
+<<<<<<< HEAD
+=======
+            if(item.disappearTime <= score){
+                items.remove(item);
+                break;
+            }
+>>>>>>> e7afdce48bfa32f6e91e6e05cf05bcfffcf3dde4
         }
     }
     public Player getPlayer(){
