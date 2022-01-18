@@ -14,7 +14,7 @@ public class DoubleShot extends Bullet {
 
 
     public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#00ff80"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "|");
     }
