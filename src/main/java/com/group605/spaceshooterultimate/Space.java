@@ -431,7 +431,7 @@ public class Space {
     public void manageItems(){
         for(Item item : items){
             if(item.checkCollision(player.getPosition())){
-                player.lives++;
+                if(player.lives < 3) player.lives++;
                 items.remove(item);
                 break;
             }
