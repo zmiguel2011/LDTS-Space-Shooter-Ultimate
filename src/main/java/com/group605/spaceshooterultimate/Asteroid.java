@@ -17,8 +17,8 @@ public class Asteroid extends Enemy {
     public void setSize(String size) { this.size = size; }
 
     public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#703a04"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "A");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "a");
     }
 }

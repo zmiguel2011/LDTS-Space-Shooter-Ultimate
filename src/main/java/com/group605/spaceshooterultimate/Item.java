@@ -24,7 +24,7 @@ public class Item {
         return this.position;
     }
     void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#ff007b"));
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "h");
     }
 }

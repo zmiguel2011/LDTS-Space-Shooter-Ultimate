@@ -38,7 +38,7 @@ public class Player extends Entity{
     }
 
     public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#00fffb"));
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "s");
     }
 
