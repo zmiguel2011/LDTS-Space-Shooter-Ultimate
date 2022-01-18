@@ -354,10 +354,16 @@ public class Space {
         for(BurstShot burstShot : burstShots){
             if(burstShot.checkBulletImpact(spaceship.getPosition())) {
                 spaceship.setHealth(spaceship.getHealth() - burstShot.getDamage());
+                System.out.println(spaceship.getHealth());
                 ScoreIncrement(100);
                 return true;
             }
         }
+        return false;
+    }
+
+    private boolean isSpaceshipDead(Spaceship spaceship) {
+        if (spaceship.getHealth() <= 0) return true;
         return false;
     }
 
@@ -450,7 +456,8 @@ public class Space {
 
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
-            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isSpaceshipHit(spaceship)){
+            isSpaceshipHit(spaceship);
+            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isSpaceshipDead(spaceship)){
                 spaceships.remove(spaceship);
                 break;
             }
