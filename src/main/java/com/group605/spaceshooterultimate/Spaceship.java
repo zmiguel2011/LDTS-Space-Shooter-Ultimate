@@ -33,6 +33,7 @@ public class Spaceship extends Enemy {
         enemyShots.add(new EnemyShot(x, y));
     }
 
+
     @Override
     public void moveEnemy(){
         Random random = new Random();

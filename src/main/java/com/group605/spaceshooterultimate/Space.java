@@ -322,11 +322,6 @@ public class Space {
         return false;
     }
 
-    private boolean isEnemyDead(Enemy enemy) {
-        if (enemy.getHealth() <= 0) return true;
-        return false;
-    }
-
     private boolean isPlayerHit(Position position){
         for (Spaceship spaceship : spaceships) {
             for(EnemyShot enemyShot : spaceship.getEnemyShots()) {
@@ -398,7 +393,7 @@ public class Space {
         for(Asteroid asteroid : asteroids){
             isEnemyHit(asteroid);
             asteroid.moveEnemy();
-            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || isEnemyDead(asteroid)){
+            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || asteroid.isDead()){
                 asteroids.remove(asteroid);
                 break;
             }
@@ -418,7 +413,7 @@ public class Space {
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
             isEnemyHit(spaceship);
-            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isEnemyDead(spaceship)){
+            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || spaceship.isDead()){
                 spaceships.remove(spaceship);
                 break;
             }
