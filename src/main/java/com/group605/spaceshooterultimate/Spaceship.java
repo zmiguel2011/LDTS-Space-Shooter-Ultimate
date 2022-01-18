@@ -15,7 +15,7 @@ public class Spaceship extends Enemy {
 
     private List<EnemyShot> enemyShots;
 
-    Spaceship(int x, int y, int health) {
+    Spaceship(int x, int y, double health) {
         super(x, y, health);
         this.enemyShots = new ArrayList<>();
     }

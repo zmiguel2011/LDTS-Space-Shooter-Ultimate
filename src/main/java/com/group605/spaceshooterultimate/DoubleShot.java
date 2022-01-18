@@ -7,8 +7,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class DoubleShot extends Bullet {
 
-    DoubleShot(int x, int y){
+    DoubleShot(int x, int y) {
         super(x, y);
+        this.setDamage(0.5);
     }
 
 

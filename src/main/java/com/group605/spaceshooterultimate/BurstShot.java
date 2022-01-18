@@ -7,8 +7,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class BurstShot extends Bullet {
 
-    BurstShot(int x, int y){
+    BurstShot(int x, int y) {
         super(x, y);
+        this.setDamage(0.34);
     }
 
 

@@ -233,7 +233,7 @@ public class Space {
 
 
         while(spaceships.size() < SPACESHIP_NUMBER){
-            spaceships.add(new Spaceship(random.nextInt(width), (height-height)+1, 100));
+            spaceships.add(new Spaceship(random.nextInt(width), (height-height)+1, 1));
         }
     }
 
@@ -314,7 +314,7 @@ public class Space {
     //TO DO: ADD BULLET DAMAGE
     //IDEA : RETURN BULLET DAMAGE INSTEAD OF TRUE OR FALSE AND THEN DEAL THAT DAMAGE TO THE ASTEROID
 
-    private boolean isEntityHit(Position position){
+    private boolean isAsteroidHit(Position position){
         for(SingleShot singleShot : singleShots){
             if(singleShot.checkBulletImpact(position)) {
                 ScoreIncrement(100);
@@ -329,6 +329,31 @@ public class Space {
         }
         for(BurstShot burstShot : burstShots){
             if(burstShot.checkBulletImpact(position)) {
+                ScoreIncrement(100);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isSpaceshipHit(Spaceship spaceship){
+        for(SingleShot singleShot : singleShots){
+            if(singleShot.checkBulletImpact(spaceship.getPosition())) {
+                spaceship.setHealth(spaceship.getHealth() - singleShot.getDamage());
+                ScoreIncrement(100);
+                return true;
+            }
+        }
+        for(DoubleShot doubleShot : doubleShots){
+            if(doubleShot.checkBulletImpact(spaceship.getPosition())) {
+                spaceship.setHealth(spaceship.getHealth() - doubleShot.getDamage());
+                ScoreIncrement(100);
+                return true;
+            }
+        }
+        for(BurstShot burstShot : burstShots){
+            if(burstShot.checkBulletImpact(spaceship.getPosition())) {
+                spaceship.setHealth(spaceship.getHealth() - burstShot.getDamage());
                 ScoreIncrement(100);
                 return true;
             }
@@ -406,7 +431,7 @@ public class Space {
     public void manageAsteroid() throws InterruptedException {
         for(Asteroid asteroid : asteroids){
             asteroid.moveEnemy();
-            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || isEntityHit(asteroid.getPosition())){
+            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || isAsteroidHit(asteroid.getPosition())){
                 asteroids.remove(asteroid);
                 break;
             }
@@ -425,7 +450,7 @@ public class Space {
 
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
-            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isEntityHit(spaceship.getPosition())){
+            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isSpaceshipHit(spaceship)){
                 spaceships.remove(spaceship);
                 break;
             }
