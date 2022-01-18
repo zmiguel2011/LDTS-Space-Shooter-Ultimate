@@ -25,7 +25,6 @@ public class Item {
     }
     void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "L");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "h");
     }
 }

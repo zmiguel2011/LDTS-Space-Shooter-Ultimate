@@ -198,7 +198,6 @@ public class Space {
         /*
         String auxstr;
         int aux = random.nextInt(3);
-
         if(aux == 3){
             auxstr = "large";
         } else if (aux == 2){
@@ -241,7 +240,7 @@ public class Space {
 
     private List<SingleShot> singleShotFire(){
         singleShots.add(new SingleShot(player.position.getX(), player.position.getY()-1));
-            return singleShots;
+        return singleShots;
     }
 
     private List<DoubleShot> doubleShotFire(){
@@ -388,7 +387,7 @@ public class Space {
         highScoreText = String.valueOf(highScore);
         return "HIGHSCORE: " +highScoreText;
     }
-    
+
     private String displayScore() {
         String scoreText;
         scoreText = String.valueOf(score);
