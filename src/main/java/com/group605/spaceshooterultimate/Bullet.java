@@ -5,16 +5,16 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class Bullet {
     protected Position position;
-    protected int damage;
+    private double damage;
 
     Bullet(int x, int y){
         this.position = new Position(x, y);
     }
 
-    public void setDamage(int damage){
+    public void setDamage(double damage){
         this.damage = damage;
     }
-    public int getDamage(){
+    public double getDamage(){
         return this.damage;
     }
 

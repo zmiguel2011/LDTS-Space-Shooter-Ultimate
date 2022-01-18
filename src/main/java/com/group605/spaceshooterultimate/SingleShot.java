@@ -9,7 +9,10 @@ public class SingleShot extends Bullet {
 
     SingleShot(int x, int y) {
         super(x, y);
+        this.setDamage(1);
     }
+
+
 
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));

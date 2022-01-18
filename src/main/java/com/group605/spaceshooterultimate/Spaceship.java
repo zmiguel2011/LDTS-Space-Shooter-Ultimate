@@ -15,15 +15,14 @@ public class Spaceship extends Enemy {
 
     private List<EnemyShot> enemyShots;
 
-    Spaceship(int x, int y, int health) {
+    Spaceship(int x, int y, double health) {
         super(x, y, health);
         this.enemyShots = new ArrayList<>();
     }
 
     public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "S");
+        graphics.setForegroundColor(TextColor.Factory.fromString("#ff0000"));
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "e");
     }
 
     public List<EnemyShot> getEnemyShots(){

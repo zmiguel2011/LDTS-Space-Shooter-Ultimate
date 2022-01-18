@@ -6,16 +6,16 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class Enemy extends Entity {
-    int health;
+    double health;
 
-    Enemy(int x, int y, int health) {
+    Enemy(int x, int y, double health) {
         super(x,y);
         this.health = health;
     }
 
 
-    public int getHealth() { return health; }
-    public void setHealth(int health) { this.health = health; }
+    public double getHealth() { return health; }
+    public void setHealth(double health) { this.health = health; }
 
 
     public abstract void draw(TextGraphics graphics);
