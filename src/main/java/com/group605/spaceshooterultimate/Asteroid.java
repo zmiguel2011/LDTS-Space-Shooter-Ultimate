@@ -8,7 +8,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Asteroid extends Enemy {
     String size;
 
-    public Asteroid(int x, int y, int health, String size) {
+    public Asteroid(int x, int y, double health, String size) {
         super(x, y, health);
         this.size = size;
     }

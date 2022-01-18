@@ -210,30 +210,18 @@ public class Space {
 
 
         while(asteroids.size() < ASTEROID_NUMBER){
-            asteroids.add(new Asteroid(random.nextInt(width), (height-height)+1, 100, "auxstr"));
+            if (score <= 2500) asteroids.add(new Asteroid(random.nextInt(width), (height-height)+1, 0.3, "small"));
+            else if (score >= 2500 & score <= 5000) asteroids.add(new Asteroid(random.nextInt(width), (height-height)+1, 0.5, "medium"));
+            else asteroids.add(new Asteroid(random.nextInt(width), (height-height)+1, 1, "large"));
         }
     }
 
     public void createSpaceships(){
         Random random = new Random();
 
-        //TO BE ADDED : ABILITY TO GENERATE ASTEROIDS WITH DIFFERENT SIZES
-        /*
-        String auxstr;
-        int aux = random.nextInt(3);
-
-        if(aux == 3){
-            auxstr = "large";
-        } else if (aux == 2){
-            auxstr = "medium";
-        } else{
-            auxstr = "small";
-        }
-         */
-
-
         while(spaceships.size() < SPACESHIP_NUMBER){
-            spaceships.add(new Spaceship(random.nextInt(width), (height-height)+1, 1));
+            if (score <= 3500) spaceships.add(new Spaceship(random.nextInt(width), (height-height)+1, 1));
+            else spaceships.add(new Spaceship(random.nextInt(width), (height-height)+1, 2));
         }
     }
 
@@ -282,7 +270,6 @@ public class Space {
     }
 
 
-
     public void movePlayer(Position position){
         if(canEntityMove(position) == true){
             player.setPosition(position);
@@ -311,24 +298,24 @@ public class Space {
         return true;
     }
 
-    //TO DO: ADD BULLET DAMAGE
-    //IDEA : RETURN BULLET DAMAGE INSTEAD OF TRUE OR FALSE AND THEN DEAL THAT DAMAGE TO THE ASTEROID
-
-    private boolean isAsteroidHit(Position position){
+    private boolean isEnemyHit(Enemy enemy){
         for(SingleShot singleShot : singleShots){
-            if(singleShot.checkBulletImpact(position)) {
+            if(singleShot.checkBulletImpact(enemy.getPosition())) {
+                enemy.setHealth(enemy.getHealth() - singleShot.getDamage());
                 ScoreIncrement(100);
                 return true;
             }
         }
         for(DoubleShot doubleShot : doubleShots){
-            if(doubleShot.checkBulletImpact(position)) {
+            if(doubleShot.checkBulletImpact(enemy.getPosition())) {
+                enemy.setHealth(enemy.getHealth() - doubleShot.getDamage());
                 ScoreIncrement(100);
                 return true;
             }
         }
         for(BurstShot burstShot : burstShots){
-            if(burstShot.checkBulletImpact(position)) {
+            if(burstShot.checkBulletImpact(enemy.getPosition())) {
+                enemy.setHealth(enemy.getHealth() - burstShot.getDamage());
                 ScoreIncrement(100);
                 return true;
             }
@@ -336,34 +323,8 @@ public class Space {
         return false;
     }
 
-    private boolean isSpaceshipHit(Spaceship spaceship){
-        for(SingleShot singleShot : singleShots){
-            if(singleShot.checkBulletImpact(spaceship.getPosition())) {
-                spaceship.setHealth(spaceship.getHealth() - singleShot.getDamage());
-                ScoreIncrement(100);
-                return true;
-            }
-        }
-        for(DoubleShot doubleShot : doubleShots){
-            if(doubleShot.checkBulletImpact(spaceship.getPosition())) {
-                spaceship.setHealth(spaceship.getHealth() - doubleShot.getDamage());
-                ScoreIncrement(100);
-                return true;
-            }
-        }
-        for(BurstShot burstShot : burstShots){
-            if(burstShot.checkBulletImpact(spaceship.getPosition())) {
-                spaceship.setHealth(spaceship.getHealth() - burstShot.getDamage());
-                System.out.println(spaceship.getHealth());
-                ScoreIncrement(100);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isSpaceshipDead(Spaceship spaceship) {
-        if (spaceship.getHealth() <= 0) return true;
+    private boolean isEnemyDead(Enemy enemy) {
+        if (enemy.getHealth() <= 0) return true;
         return false;
     }
 
@@ -436,8 +397,9 @@ public class Space {
 
     public void manageAsteroid() throws InterruptedException {
         for(Asteroid asteroid : asteroids){
+            isEnemyHit(asteroid);
             asteroid.moveEnemy();
-            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || isAsteroidHit(asteroid.getPosition())){
+            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || isEnemyDead(asteroid)){
                 asteroids.remove(asteroid);
                 break;
             }
@@ -456,8 +418,8 @@ public class Space {
 
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
-            isSpaceshipHit(spaceship);
-            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isSpaceshipDead(spaceship)){
+            isEnemyHit(spaceship);
+            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isEnemyDead(spaceship)){
                 spaceships.remove(spaceship);
                 break;
             }
