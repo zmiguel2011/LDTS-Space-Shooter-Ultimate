@@ -104,8 +104,8 @@ public class Game {
 
     public void draw() throws IOException{
         screen.clear();
-        //gameOverController.getGameOverViewer().draw();
-        menuController.getMenuViewer().draw();
+        gameOverController.getGameOverViewer().draw();
+        //menuController.getMenuViewer().draw();
         //space.draw(screen.newTextGraphics()); //Calls the function responsible to draw the objects into the arena
         screen.refresh();
     }
@@ -183,7 +183,8 @@ public class Game {
         space.manageItems();
     }
     private void processKey(KeyStroke key){
-         menuController.processKey(key);
+          gameOverController.processKey(key);
+         //menuController.processKey(key);
         //space.processKey(key);
     }
 }
