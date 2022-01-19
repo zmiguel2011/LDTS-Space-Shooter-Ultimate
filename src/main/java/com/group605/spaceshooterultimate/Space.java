@@ -99,7 +99,7 @@ public class Space {
         for (Item item : items){
             item.draw(graphics);
         }
-        //Draw Explosions spaceships
+        //Draw Spaceship Explosions
         for(Explosion explosion : enemyExplosions){
             explosion.draw(graphics);
         }
@@ -506,7 +506,7 @@ public class Space {
 
     public void manageSpaceshipExplosions() throws InterruptedException{
         for(Explosion explosion : enemyExplosions){
-            if(player.getPosition() != player_tracker || shooting){
+            if(player.getPosition() != player_tracker){
                 enemyExplosions.remove(explosion);
                 break;
             }
