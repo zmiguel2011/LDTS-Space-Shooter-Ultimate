@@ -456,6 +456,7 @@ public class Space {
         for(Item item : items){
             if(item.checkCollision(player.getPosition())){
                 if(player.lives < 3) player.lives++;
+                else score += 50;
                 items.remove(item);
                 break;
             }
