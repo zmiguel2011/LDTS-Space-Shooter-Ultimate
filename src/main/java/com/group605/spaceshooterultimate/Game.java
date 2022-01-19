@@ -9,6 +9,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import com.group605.spaceshooterultimate.controller.GameOverController;
+import com.group605.spaceshooterultimate.controller.MenuController;
 
 
 import java.awt.*;
@@ -31,6 +33,8 @@ public class Game {
     private double averageFPS;
 
     Space space = new Space(100,40);
+    private MenuController menuController;
+    private GameOverController gameOverController;
 
     public Game(int width, int height) throws IOException, FontFormatException {
         AWTTerminalFontConfiguration fontConfig = loadSpaceShooterUltimateFont();
@@ -39,6 +43,8 @@ public class Game {
         addCloseScreenListener();
         this.height=height;
         this.width=width;
+        this.menuController = new MenuController(screen);
+        this.gameOverController = new GameOverController(screen);
     }
 
     public Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
@@ -98,7 +104,9 @@ public class Game {
 
     public void draw() throws IOException{
         screen.clear();
-        space.draw(screen.newTextGraphics()); //Calls the function responsible to draw the objects into the arena
+        //gameOverController.getGameOverViewer().draw();
+        menuController.getMenuViewer().draw();
+        //space.draw(screen.newTextGraphics()); //Calls the function responsible to draw the objects into the arena
         screen.refresh();
     }
 
@@ -175,7 +183,8 @@ public class Game {
         space.manageItems();
     }
     private void processKey(KeyStroke key){
-        space.processKey(key);
+         menuController.processKey(key);
+        //space.processKey(key);
     }
 }
 
