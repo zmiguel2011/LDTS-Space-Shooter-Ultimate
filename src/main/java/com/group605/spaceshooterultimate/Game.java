@@ -183,6 +183,7 @@ public class Game {
 
     private void explosions() throws InterruptedException{
         space.manageExplosions();
+        space.manageSpaceshipExplosions();
     }
     private void processKey(KeyStroke key){
         space.processKey(key);

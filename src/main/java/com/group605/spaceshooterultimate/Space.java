@@ -30,11 +30,13 @@ public class Space {
     private List<Spaceship> spaceships;
     private List<Item> items;
     private List<Explosion> explosions;
+    private List<Explosion> enemyExplosions;
     private int ASTEROID_NUMBER = 5; //Sets how many Asteroids will spawn together
     private int SPACESHIP_NUMBER = 3; //Sets how many SpaceShip will spawn together
     private final int MAX_MOVEMENT_NUMBER = 5;
     private int ITEM_NUMBER = 2;
     private int item_score; // checks if item for certain score has already spawned;
+    private Position player_tracker;
     private int score = 0;
     private int highScore = 0;
     private Position RespawnPosition = new Position(50,30);
@@ -68,6 +70,7 @@ public class Space {
         this.spaceships = new ArrayList<>();
         this.items = new ArrayList<>();
         this.explosions = new ArrayList<>();
+        this.enemyExplosions = new ArrayList<>();
         this.item_score = 0;
 
         LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
@@ -96,7 +99,10 @@ public class Space {
         for (Item item : items){
             item.draw(graphics);
         }
-
+        //Draw Explosions spaceships
+        for(Explosion explosion : enemyExplosions){
+            explosion.draw(graphics);
+        }
         //Draw Explosions
         for (Explosion explosion : explosions){
             explosion.draw(graphics);
@@ -456,6 +462,9 @@ public class Space {
             EnemyShotFire(spaceship);
             isEnemyHit(spaceship);
             if(canEntityMove(spaceship.getPosition()) == false || spaceship.isDead()){
+                enemyExplosions.add(new Explosion(spaceship.getPosition().getX(),spaceship.getPosition().getY()));
+                player_tracker = player.getPosition();
+                shooting = false;
                 spaceships.remove(spaceship);
                 break;
             }
@@ -490,6 +499,15 @@ public class Space {
         for(Explosion explosion : explosions){
             if ((player.getPosition() != RespawnPosition) || shooting == true) {
                 explosions.remove(explosion);
+                break;
+            }
+        }
+    }
+
+    public void manageSpaceshipExplosions() throws InterruptedException{
+        for(Explosion explosion : enemyExplosions){
+            if(player.getPosition() != player_tracker || shooting){
+                enemyExplosions.remove(explosion);
                 break;
             }
         }
