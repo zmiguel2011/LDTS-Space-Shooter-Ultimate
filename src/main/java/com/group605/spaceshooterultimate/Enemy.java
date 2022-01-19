@@ -22,6 +22,12 @@ public abstract class Enemy extends Entity {
 
     public void moveEnemy(){this.position.setY(this.position.getY()+1);}
 
+    public boolean isDead(){
+        if(this.health <= 0) return true;
+
+        return false;
+    }
+
     public boolean checkImpact(Enemy enemy, Player player) {
         if(enemy.position.equals(player.getPosition())) {
             player.lives--;

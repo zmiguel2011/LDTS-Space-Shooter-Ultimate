@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.EscapeSequenceCharacterPattern;
 import com.googlecode.lanterna.input.KeyStroke;
 
 import javax.sql.ConnectionPoolDataSource;
@@ -28,6 +29,7 @@ public class Space {
     private List<Asteroid> asteroids;
     private List<Spaceship> spaceships;
     private List<Item> items;
+    private List<Explosion> explosions;
     private int ASTEROID_NUMBER = 5; //Sets how many Asteroids will spawn together
     private int SPACESHIP_NUMBER = 3; //Sets how many SpaceShip will spawn together
     private final int MAX_MOVEMENT_NUMBER = 5;
@@ -35,6 +37,8 @@ public class Space {
     private int item_score; // checks if item for certain score has already spawned;
     private int score = 0;
     private int highScore = 0;
+    private Position RespawnPosition = new Position(50,30);
+    private boolean shooting = false;
 
     //TEXT OFFSET VALUES
     private int LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE;
@@ -53,7 +57,7 @@ public class Space {
     Space(int width, int height){
         this.width = width;
         this.height = height;
-        this.player = new Player(10,10);
+        this.player = new Player(50,30);
         this.borders = createBorders();
         this.singleShots = new ArrayList<>();
         this.doubleShots = new ArrayList<>();
@@ -62,6 +66,7 @@ public class Space {
         this.asteroids = new ArrayList<>();
         this.spaceships = new ArrayList<>();
         this.items = new ArrayList<>();
+        this.explosions = new ArrayList<>();
         this.item_score = 0;
 
         LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE = width+10;
@@ -85,9 +90,15 @@ public class Space {
         for(Border border : borders){
             border.draw(graphics);
         }
-        //Draw Item
+
+        //Draw Items
         for (Item item : items){
             item.draw(graphics);
+        }
+
+        //Draw Explosions
+        for (Explosion explosion : explosions){
+            explosion.draw(graphics);
         }
         //Draw Single Shot Bullets
         for(SingleShot singleShot : singleShots){
@@ -178,6 +189,7 @@ public class Space {
                 break;
             case Escape:
                 FireWeapon();
+                shooting = true;
                 break;
             case F1:
                 ammotype = 1;
@@ -235,7 +247,12 @@ public class Space {
         }
     }
 
-
+    private List<Explosion> Death(){
+        explosions.add(new Explosion(player.position.getX(), player.position.getY()));
+        shooting = false;
+        if (player.lives > 0) player.setPosition(RespawnPosition);
+        return explosions;
+    }
 
 
     private List<SingleShot> singleShotFire(){
@@ -322,16 +339,13 @@ public class Space {
         return false;
     }
 
-    private boolean isEnemyDead(Enemy enemy) {
-        if (enemy.getHealth() <= 0) return true;
-        return false;
-    }
 
     private boolean isPlayerHit(Position position){
         for (Spaceship spaceship : spaceships) {
             for(EnemyShot enemyShot : spaceship.getEnemyShots()) {
                 if (enemyShot.checkBulletImpact(position)) {
                     spaceship.getEnemyShots().remove(enemyShot);
+                    player.lives--;
                     return true;
                 }
             }
@@ -398,7 +412,12 @@ public class Space {
         for(Asteroid asteroid : asteroids){
             isEnemyHit(asteroid);
             asteroid.moveEnemy();
-            if(asteroid.checkImpact(asteroid, player) || canEntityMove(asteroid.getPosition()) == false || isEnemyDead(asteroid)){
+            if(canEntityMove(asteroid.getPosition()) == false || asteroid.isDead()){
+                asteroids.remove(asteroid);
+                break;
+            }
+            if(asteroid.checkImpact(asteroid, player)){
+                Death();
                 asteroids.remove(asteroid);
                 break;
             }
@@ -418,12 +437,17 @@ public class Space {
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
             isEnemyHit(spaceship);
-            if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || isEnemyDead(spaceship)){
+            if(canEntityMove(spaceship.getPosition()) == false || spaceship.isDead()){
+                spaceships.remove(spaceship);
+                break;
+            }
+            if (spaceship.checkImpact(spaceship, player)){
+                Death();
                 spaceships.remove(spaceship);
                 break;
             }
             if(isPlayerHit(player.getPosition())){
-                player.lives--;
+                Death();
             }
         }
     }
@@ -441,6 +465,16 @@ public class Space {
             }
         }
     }
+
+    public void manageExplosions() throws InterruptedException {
+        for(Explosion explosion : explosions){
+            if ((player.getPosition() != RespawnPosition) || shooting == true) {
+                explosions.remove(explosion);
+                break;
+            }
+        }
+    }
+
     public Player getPlayer(){
         return player;
     }

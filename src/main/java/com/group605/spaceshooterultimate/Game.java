@@ -124,6 +124,7 @@ public class Game {
             asteroids();
             spaceships();
             items();
+            explosions();
             URDTimeMillis = (System.nanoTime() - startTime) / 1000000;
             waitTime = targetTime - URDTimeMillis;
 
@@ -173,6 +174,10 @@ public class Game {
     private void items() throws InterruptedException{
         space.createItem();
         space.manageItems();
+    }
+
+    private void explosions() throws InterruptedException{
+        space.manageExplosions();
     }
     private void processKey(KeyStroke key){
         space.processKey(key);
