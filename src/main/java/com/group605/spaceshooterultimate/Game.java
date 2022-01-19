@@ -121,6 +121,7 @@ public class Game {
             startTime = System.nanoTime();
 
             draw(); //Function that draws the objects on the screen
+            Player();
             asteroids();
             spaceships();
             items();
@@ -159,6 +160,10 @@ public class Game {
             }
             processKey(key);
         }
+    }
+
+    private void Player() throws InterruptedException{
+        space.managePlayer();
     }
 
     private void asteroids() throws InterruptedException {

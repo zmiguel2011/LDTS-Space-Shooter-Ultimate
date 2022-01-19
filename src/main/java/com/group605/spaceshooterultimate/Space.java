@@ -39,6 +39,7 @@ public class Space {
     private int highScore = 0;
     private Position RespawnPosition = new Position(50,30);
     private boolean shooting = false;
+    private int movementCounter = 0;
 
     //TEXT OFFSET VALUES
     private int LIFESREMAINING_TEXT_DISPLAY_X_OFFSET_VALUE;
@@ -177,19 +178,24 @@ public class Space {
         switch (key.getKeyType()){
             case ArrowUp:
                 movePlayer(player.moveUp());
+                movementCounter++;
                 break;
             case ArrowDown:
                 movePlayer(player.moveDown());
+                movementCounter++;
                 break;
             case ArrowRight:
                 movePlayer(player.moveRight());
+                movementCounter++;
                 break;
             case ArrowLeft:
                 movePlayer(player.moveLeft());
+                movementCounter++;
                 break;
             case Escape:
                 FireWeapon();
                 shooting = true;
+                movementCounter++;
                 break;
             case F1:
                 ammotype = 1;
@@ -250,6 +256,8 @@ public class Space {
     private List<Explosion> Death(){
         explosions.add(new Explosion(player.position.getX(), player.position.getY()));
         shooting = false;
+        player.setSpawnProtection(true);
+        movementCounter = 0;
         if (player.lives > 0) player.setPosition(RespawnPosition);
         return explosions;
     }
@@ -345,13 +353,18 @@ public class Space {
             for(EnemyShot enemyShot : spaceship.getEnemyShots()) {
                 if (enemyShot.checkBulletImpact(position)) {
                     spaceship.getEnemyShots().remove(enemyShot);
+                    if (player.getSpawnProtection() == false) {
                     player.lives--;
                     return true;
+                    }
+                    break;
                 }
             }
         }
         return false;
     }
+
+
     public boolean canSpawnItem(){
         if(score % 100 == 0 && score != 0 && item_score != score && items.size() < ITEM_NUMBER){
             item_score = score;
@@ -381,7 +394,6 @@ public class Space {
         }
     }
 
-
     private void ScoreIncrement(int inc) {
         score = score + inc;
     }
@@ -408,6 +420,10 @@ public class Space {
         return "SCORE: " +scoreText;
     }
 
+    public void managePlayer() throws InterruptedException {
+        if(movementCounter > 3) player.setSpawnProtection(false);
+    }
+
     public void manageAsteroid() throws InterruptedException {
         for(Asteroid asteroid : asteroids){
             isEnemyHit(asteroid);
@@ -417,7 +433,10 @@ public class Space {
                 break;
             }
             if(asteroid.checkImpact(asteroid, player)){
-                Death();
+                if (player.getSpawnProtection() == false) {
+                    player.lives--;
+                    Death();
+                }
                 asteroids.remove(asteroid);
                 break;
             }
@@ -432,7 +451,6 @@ public class Space {
         for(int i = 0; i<random2.nextInt(MAX_MOVEMENT_NUMBER+1); i++){
             spaceships.get(random1.nextInt(spaceships.size())).moveEnemy();
         }
-        //
 
         for(Spaceship spaceship : spaceships){
             EnemyShotFire(spaceship);
@@ -442,6 +460,7 @@ public class Space {
                 break;
             }
             if (spaceship.checkImpact(spaceship, player)){
+                player.lives--;
                 Death();
                 spaceships.remove(spaceship);
                 break;

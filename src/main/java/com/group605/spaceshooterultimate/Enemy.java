@@ -30,7 +30,6 @@ public abstract class Enemy extends Entity {
 
     public boolean checkImpact(Enemy enemy, Player player) {
         if(enemy.position.equals(player.getPosition())) {
-            player.lives--;
             return true;
         }
         return false;
