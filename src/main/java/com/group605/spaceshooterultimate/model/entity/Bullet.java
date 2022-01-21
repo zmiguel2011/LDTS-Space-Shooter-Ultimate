@@ -1,10 +1,9 @@
-package com.group605.spaceshooterultimate;
+package com.group605.spaceshooterultimate.model.entity;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.graphics.TextGraphics;
+import com.group605.spaceshooterultimate.model.entity.Entity;
+import com.group605.spaceshooterultimate.model.entity.Position;
 
-public abstract class Bullet {
-    protected Position position;
+public abstract class Bullet extends Entity {
     private double damage;
 
     Bullet(int x, int y){
@@ -26,6 +25,4 @@ public abstract class Bullet {
     public void move(){
         this.position.setY(this.position.getY()-1);
     }
-
-    public abstract void draw(TextGraphics graphics);
 }

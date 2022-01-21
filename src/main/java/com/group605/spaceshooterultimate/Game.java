@@ -9,6 +9,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import com.group605.spaceshooterultimate.model.space.Space;
+import com.group605.spaceshooterultimate.model.space.SpaceBuilder;
 import com.group605.spaceshooterultimate.state.GameState;
 import com.group605.spaceshooterultimate.state.MenuState;
 
@@ -26,6 +28,8 @@ public class Game {
     private final TerminalScreen screen;
     private final int width;
     private final int height;
+    private Space space;
+    private SpaceBuilder spaceBuilder;
 
     //FPS Variables
     private boolean running = false;
@@ -41,8 +45,6 @@ public class Game {
         SHOOT, QUIT, NEXT, OTHER
     }
 
-    Space space = new Space(100,40);
-
     public Game(int width, int height) throws IOException, FontFormatException {
         AWTTerminalFontConfiguration fontConfig = loadSpaceShooterUltimateFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
@@ -50,9 +52,11 @@ public class Game {
         addCloseScreenListener();
         this.height=height;
         this.width=width;
+        this.spaceBuilder = new SpaceBuilder(100, 100);
+        this.space = spaceBuilder.createSpace();
 
         //State Pattern Implementation Part
-        this.gameState = new MenuState(this, screen); //Defines the Menu State has the first state passing the object itself (game object)
+        this.gameState = new MenuState(this, screen); //Defines the Menu State has the initial state passing the object itself (game object)
     }
 
     //State Pattern Implementation Part
@@ -165,29 +169,31 @@ public class Game {
                 totalTime = 0;
 
             }
-
+            /*
             if(space.getPlayer().getLives() <= 0){
                 System.out.println("GAME OVER! YOU LOST!");
                 if (space.getScore() > space.getHighScore()) space.SetHighScore();
                 System.out.println("YOU SET A NEW HIGH SCORE: " +space.getHighScore());
                 closeTerminal();
             }
+
+             */
         }
     }
 
     private void asteroids() throws InterruptedException {
-        space.createAsteroids();
-        space.manageAsteroid();
+        //space.createAsteroids();
+        //space.manageAsteroid();
     }
 
     private void spaceships() throws InterruptedException {
-        space.createSpaceships();
-        space.manageSpaceship();
+       // space.createSpaceships();
+        //space.manageSpaceship();
     }
 
     private void items() throws InterruptedException{
-        space.createItem();
-        space.manageItems();
+        //space.createItem();
+        //space.manageItems();
     }
 
     public action handleKeyPress() throws IOException{
@@ -202,6 +208,10 @@ public class Game {
         else if (key.getKeyType() == KeyType.Character && (key.getCharacter()==' ')) return action.SHOOT;
         else return action.OTHER;
     }
+
+    public int getWidth() { return width;}
+
+    public int getHeight() { return height;}
 
 }
 

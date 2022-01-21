@@ -1,6 +1,6 @@
-package com.group605.spaceshooterultimate;
+package com.group605.spaceshooterultimate.model.entity;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
+import com.group605.spaceshooterultimate.model.entity.Position;
 
 public abstract class Entity {
 
@@ -10,6 +10,8 @@ public abstract class Entity {
         position = new Position(x, y);
     }
 
+    public Entity() {}
+
     public Position getPosition(){
         return this.position;
     }
@@ -17,6 +19,4 @@ public abstract class Entity {
     public void setPosition(Position position){
         this.position = position;
     }
-
-    public abstract void draw(TextGraphics graphics);
 }

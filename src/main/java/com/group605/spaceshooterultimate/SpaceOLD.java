@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
-public class Space {
-
+public class SpaceOLD {
+    /*
     private int width, height;
     private int ammotype; //1- Single, 2-Double, 3-Burst
     private Player player;
@@ -50,7 +50,7 @@ public class Space {
 
 
 
-    Space(int width, int height){
+    SpaceOLD(int width, int height){
         this.width = width;
         this.height = height;
         this.player = new Player(10,10);
@@ -193,20 +193,6 @@ public class Space {
 
     public void createAsteroids(){
         Random random = new Random();
-
-        //TO BE ADDED : ABILITY TO GENERATE ASTEROIDS WITH DIFFERENT SIZES
-        /*
-        String auxstr;
-        int aux = random.nextInt(3);
-        if(aux == 3){
-            auxstr = "large";
-        } else if (aux == 2){
-            auxstr = "medium";
-        } else{
-            auxstr = "small";
-        }
-         */
-
 
         while(asteroids.size() < ASTEROID_NUMBER){
             if (score <= 2500) asteroids.add(new Asteroid(random.nextInt(width), (height-height)+1, 0.3, "small"));
@@ -439,5 +425,5 @@ public class Space {
     public Player getPlayer(){
         return player;
     }
-
+    */
 }
