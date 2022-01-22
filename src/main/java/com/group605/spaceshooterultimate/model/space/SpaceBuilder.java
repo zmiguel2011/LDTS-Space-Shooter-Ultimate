@@ -19,24 +19,26 @@ public class SpaceBuilder {
     public Space createSpace(){
         Space space = new Space(width, height);
         space.setPlayer(createPlayer(width/2,15)); //width/2,height-5
-        space.setSpaceships(createSpaceShips(3, 1));
-        space.setBorders(createBorders(width, height));
+        space.setSpaceships(createSpaceShips(3,width/2,1));
+        space.setBorders(createBorders(width, height-5));
         space.setAsteroids(createAsteroids(5,1));
         space.setItems(createItems(space));
         space.setSingleShots(createSingleShots());
         space.setDoubleShots(createDoubleShots());
         space.setBurstShots(createBurstShots());
         space.setAmmotype(1);
+        space.setMAX_MOVEMENT_NUMBER(5);
         //space.setItem_score();
         return space;
     }
 
-    public List<Spaceship> createSpaceShips(int x, int health){
+    public List<Spaceship> createSpaceShips(int spaceShipAmmount, int pos, int health){
         Random random = new Random();
         List<Spaceship> spaceships = new ArrayList<>();
 
-        for (int i=0; i<x; i++) {
-            spaceships.add(new Spaceship(random.nextInt(width), (height - height) + 1, health));
+        for (int i=0; i<spaceShipAmmount; i++) {
+            spaceships.add(new Spaceship(random.nextInt(pos),1, health));
+            System.out.println("teste");
         }
         return spaceships;
     }

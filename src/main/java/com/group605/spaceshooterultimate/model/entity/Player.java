@@ -26,6 +26,12 @@ public class Player extends Entity {
 
     public void moveLeft(){ setPosition(new Position(position.getX()-1, position.getY()));}
 
+    public boolean isPlayerDead() {
+        if(this.getLives() == 0) return true;
+
+        return false;
+    }
+
     //Quick Easy Way to Display Player Amount of Lives Remaining in an Arcade Way
     public String displayLives(){
         return Integer.toString(getLives());

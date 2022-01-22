@@ -8,10 +8,8 @@ public abstract class Enemy extends Entity {
         this.health = health;
     }
 
-
     public double getHealth() { return health; }
     public void setHealth(double health) { this.health = health; }
-
 
     public void moveEnemy(){this.position.setY(this.position.getY()+1);}
 
@@ -23,7 +21,6 @@ public abstract class Enemy extends Entity {
 
     public boolean checkImpact(Enemy enemy, Player player) {
         if(enemy.position.equals(player.getPosition())) {
-            player.lives--;
             return true;
         }
         return false;

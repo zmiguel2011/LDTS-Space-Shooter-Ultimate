@@ -16,20 +16,24 @@ public class SpaceController {
     private final AsteroidController asteroidController;
     private final ExplosionController explosionController;
     private final SpaceShipController spaceshipController;
+    private final ShootingController shootingController;
 
     public SpaceController(Game game, Screen screen, Space space) throws IOException{
         this.game = game;
         this.screen = screen;
         this.spaceViewer = new SpaceViewer(screen, space);
-        this.playerController = new PlayerController(game, space.getPlayer());
+        this.playerController = new PlayerController(game, screen, space);
         this.asteroidController = new AsteroidController();
         this.explosionController = new ExplosionController();
-        this.spaceshipController = new SpaceShipController();
+        this.spaceshipController = new SpaceShipController(space);
+        this.shootingController = new ShootingController(space, space.getPlayer());
     }
 
 
     public void manageController() throws IOException {
         spaceViewer.draw();
-        playerController.manageKeyPress();
+        playerController.manageController();
+        shootingController.manageMovement();
+        spaceshipController.manageSpaceships();
     }
 }

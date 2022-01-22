@@ -3,6 +3,7 @@ package com.group605.spaceshooterultimate.controller;
 
 import com.googlecode.lanterna.screen.Screen;
 import com.group605.spaceshooterultimate.Game;
+import com.group605.spaceshooterultimate.state.GameOverState;
 import com.group605.spaceshooterultimate.state.PlayState;
 import com.group605.spaceshooterultimate.viewer.MenuViewer;
 

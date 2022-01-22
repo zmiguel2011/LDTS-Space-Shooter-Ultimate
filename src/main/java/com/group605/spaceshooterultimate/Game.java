@@ -15,6 +15,7 @@ import com.group605.spaceshooterultimate.state.GameState;
 import com.group605.spaceshooterultimate.state.MenuState;
 
 
+import javax.lang.model.util.ElementScanner6;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -42,7 +43,8 @@ public class Game {
     //KeyPress Part
     public enum action {
         UP, DOWN, LEFT, RIGHT,
-        SHOOT, QUIT, NEXT, OTHER
+        SHOOT, QUIT, NEXT, SINGLE,
+        DOUBLE, BURST, OTHER
     }
 
     public Game(int width, int height) throws IOException, FontFormatException {
@@ -52,7 +54,7 @@ public class Game {
         addCloseScreenListener();
         this.height=height;
         this.width=width;
-        this.spaceBuilder = new SpaceBuilder(100, 100);
+        this.spaceBuilder = new SpaceBuilder(width, height);
         this.space = spaceBuilder.createSpace();
 
         //State Pattern Implementation Part
@@ -206,6 +208,9 @@ public class Game {
         else if (key.getKeyType() ==  KeyType.Character && (key.getCharacter()=='a' || key.getCharacter()=='A')) return action.LEFT;
         else if (key.getKeyType() ==  KeyType.Enter) return action.NEXT;
         else if (key.getKeyType() == KeyType.Character && (key.getCharacter()==' ')) return action.SHOOT;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()=='1')) return action.SINGLE;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()=='2')) return action.DOUBLE;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()=='3')) return action.BURST;
         else return action.OTHER;
     }
 

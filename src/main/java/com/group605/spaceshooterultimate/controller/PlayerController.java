@@ -1,7 +1,10 @@
 package com.group605.spaceshooterultimate.controller;
 
+import com.googlecode.lanterna.screen.Screen;
 import com.group605.spaceshooterultimate.Game;
 import com.group605.spaceshooterultimate.model.entity.Player;
+import com.group605.spaceshooterultimate.model.space.Space;
+import com.group605.spaceshooterultimate.state.GameOverState;
 import com.group605.spaceshooterultimate.state.MenuState;
 
 import java.io.IOException;
@@ -10,10 +13,16 @@ public class PlayerController {
 
     private Game game;
     private Player player;
+    private Screen screen;
+    private Space space;
+    private ShootingController shootingController;
 
-    public PlayerController(Game game, Player player){
+    public PlayerController(Game game, Screen screen, Space space){
         this.game = game;
-        this.player = player;
+        this.player = space.getPlayer();
+        this.space = space;
+        this.screen = screen;
+        this.shootingController = new ShootingController(space, player);
     }
 
     public void manageKeyPress() throws IOException {
@@ -23,44 +32,42 @@ public class PlayerController {
             case DOWN: { player.moveDown(); break; }
             case LEFT: { player.moveLeft(); break; }
             case RIGHT: { player.moveRight(); break; }
-            case SHOOT: break;
+            case SHOOT: { FireWeapon(); break; }
             case NEXT: break;
             case QUIT: { game.closeTerminal(); break; }
+            case SINGLE:
+                space.setAmmotype(1);
+                break;
+            case DOUBLE:
+                space.setAmmotype(2);
+                break;
+            case BURST:
+                space.setAmmotype(3);
+                break;
             default:
                 break;
         }
     }
 
-    /*
     private void FireWeapon(){
-        if(ammotype == 1){
-            singleShotFire();
-        } else if (ammotype == 2){
-            doubleShotFire();
-        } else if (ammotype == 3) {
-            burstShotFire();
+        if(space.getAmmotype() == 1){
+            shootingController.singleShotFire();
+        } else if (space.getAmmotype() == 2){
+            shootingController.doubleShotFire();
+        } else if (space.getAmmotype() == 3) {
+            shootingController.burstShotFire();
         }
     }
 
-    private List<SingleShot> singleShotFire(){
-        singleShots.add(new SingleShot(player.position.getX(), player.position.getY()-1));
-        return singleShots;
+    private void managePlayer() throws IOException{
+        if(player.isPlayerDead()){
+            game.changeGameState(new GameOverState(game, screen));
+        }
     }
-
-    private List<DoubleShot> doubleShotFire(){
-        doubleShots.add(new DoubleShot(player.position.getX()+1, player.position.getY()-1));
-        doubleShots.add(new DoubleShot(player.position.getX()-1, player.position.getY()-1));
-        return doubleShots;
-    }
-    private List<BurstShot> burstShotFire(){
-        burstShots.add(new BurstShot(player.position.getX(), player.position.getY()-1));
-        burstShots.add(new BurstShot(player.position.getX()-1, player.position.getY()-1));
-        burstShots.add(new BurstShot(player.position.getX()+1, player.position.getY()-1));
-        return burstShots;
-    }
-    */
 
     public void manageController() throws IOException{
         manageKeyPress();
+        managePlayer();
     }
+
 }
