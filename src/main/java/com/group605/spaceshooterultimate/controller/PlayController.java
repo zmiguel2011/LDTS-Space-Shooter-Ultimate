@@ -24,14 +24,15 @@ public class PlayController {
         this.spaceController = new SpaceController(game, screen, space);
     }
 
-
+    /*
     public void manageKeyPress() throws IOException{
         Game.action action = game.handleKeyPress();
         switch (action){
         }
     }
+     */
 
-    public void manageController() throws IOException{
+    public void manageController() throws IOException, InterruptedException {
         spaceController.manageController();
     }
 }

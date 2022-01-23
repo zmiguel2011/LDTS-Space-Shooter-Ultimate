@@ -14,7 +14,7 @@ public class SpaceController {
     private final SpaceViewer spaceViewer;
     private final PlayerController playerController;
     private final AsteroidController asteroidController;
-    private final ExplosionController explosionController;
+    private ExplosionController explosionController;
     private final SpaceShipController spaceshipController;
     private final ShootingController shootingController;
 
@@ -27,13 +27,15 @@ public class SpaceController {
         this.explosionController = new ExplosionController(space, space.getPlayer());
         this.spaceshipController = new SpaceShipController(space);
         this.shootingController = new ShootingController(space, space.getPlayer());
+        this.explosionController = new ExplosionController(space,space.getPlayer());
     }
 
 
-    public void manageController() throws IOException {
+    public void manageController() throws IOException, InterruptedException {
         spaceViewer.draw();
         playerController.manageController();
         shootingController.manageMovement();
         spaceshipController.manageSpaceships();
+        explosionController.manageExplosions();
     }
 }

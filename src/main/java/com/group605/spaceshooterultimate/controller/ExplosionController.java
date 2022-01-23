@@ -21,4 +21,22 @@ public class ExplosionController {
         player.setMovementCounter(0);
         if (player.getLives() > 0) player.setPosition(player.getRespawnPosition());
     }
+
+    public void manageExplosions() throws InterruptedException {
+        for(Explosion explosion : space.getExplosions()){
+            if ((player.getPosition() != player.getRespawnPosition()) || player.isShooting()) {
+                space.getExplosions().remove(explosion);
+                break;
+            }
+        }
+
+        /*
+        for(Explosion explosion : space.getEnemyExplosions()){
+            if(player.getPosition() != player_tracker){
+                space.getEnemyExplosions().remove(explosion);
+                break;
+            }
+        }
+        */
+    }
 }

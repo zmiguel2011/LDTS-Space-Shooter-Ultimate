@@ -23,5 +23,5 @@ public abstract class GameState {
     //Then, MenuController will handle its View and Model which will be responsible for handle the rest of the logic and display
     //This isn't the best way of doing this because it can generate mutations, but once we are racing against the time we decided to do it this way
 
-    public abstract void selectController() throws IOException;
+    public abstract void selectController() throws IOException, InterruptedException;
 }

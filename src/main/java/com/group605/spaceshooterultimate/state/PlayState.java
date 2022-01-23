@@ -20,7 +20,7 @@ public class PlayState extends GameState{
     }
 
     @Override
-    public void selectController() throws IOException {
+    public void selectController() throws IOException, InterruptedException {
         playController.manageController();
     }
 
