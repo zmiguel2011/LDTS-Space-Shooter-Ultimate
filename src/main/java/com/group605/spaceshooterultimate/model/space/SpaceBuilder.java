@@ -29,7 +29,10 @@ public class SpaceBuilder {
         space.setExplosions(createExplosions());
         space.setEnemyExplosions(createEnemyExplosions());
         space.setAmmotype(1);
+        space.setASTEROID_NUMBER(5);
+        space.setSPACESHIP_NUMBER(3);
         space.setMAX_MOVEMENT_NUMBER(5);
+        space.setITEM_NUMBER(2);
         //space.setItem_score();
         return space;
     }
