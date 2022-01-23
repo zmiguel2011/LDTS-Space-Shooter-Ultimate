@@ -11,7 +11,7 @@ public class ItemController {
 
     public ItemController(Space space){
         this.space = space;
-        this.builder = new SpaceBuilder(space.getWidth(),space.getHeight());
+        this.builder = new SpaceBuilder(space.getWidth(),space.getHeight(), space.getHighScore());
     }
 
     public void checkCollision(Player player){

@@ -32,12 +32,8 @@ public class SpaceController {
         this.spaceshipController = new SpaceShipController(space);
         this.shootingController = new ShootingController(space, space.getPlayer());
         this.explosionController = new ExplosionController(space,space.getPlayer());
-<<<<<<< HEAD
         this.sessionInfoController = new SessionInfoController(game, space);
-=======
-        this.sessionInfoController = new SessionInfoController(space);
         this.itemController = new ItemController(space);
->>>>>>> 6a672080badc36a94d55eb53113155a5090013c8
     }
 
     public void manageController() throws IOException, InterruptedException {
