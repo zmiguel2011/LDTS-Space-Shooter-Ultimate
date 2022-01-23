@@ -18,7 +18,8 @@ public class SessionInfoViewer {
 
     public void draw(Space space) {
         graphics.putString(70, 28, "SPACEBAR- FIRE; 1- SINGLE; 2- DOUBLE; 3- BURST");
-        graphics.putString(40, 28, "SESSION SCORE: " + space.getScore());
-        graphics.putString(10, 28, "SESSION HIGH SCORE: "+ space.getHighScore());
+        graphics.putString(35, 28, "SESSION SCORE: " + space.getScore());
+        graphics.putString(5, 28, "SESSION HIGH SCORE: "+ space.getHighScore());
+        graphics.putString(57, 28, "LIVES: " + space.getPlayer().getLives());
     }
 }

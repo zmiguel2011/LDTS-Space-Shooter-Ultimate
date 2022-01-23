@@ -15,7 +15,7 @@ public class PlayState extends GameState{
 
     public PlayState(Game game, Screen screen) throws IOException{
         super(game, screen);
-        this.space = new SpaceBuilder(game.getWidth(), game.getHeight()).createSpace();
+        this.space = new SpaceBuilder(game.getWidth(), game.getHeight(), game.getHighscore()).createSpace();
         this.playController = new PlayController(game, screen, space);
     }
 

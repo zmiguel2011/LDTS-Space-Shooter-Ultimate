@@ -10,7 +10,6 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.group605.spaceshooterultimate.model.space.Space;
-import com.group605.spaceshooterultimate.model.space.SpaceBuilder;
 import com.group605.spaceshooterultimate.state.GameState;
 import com.group605.spaceshooterultimate.state.MenuState;
 
@@ -29,8 +28,8 @@ public class Game {
     private final TerminalScreen screen;
     private final int width;
     private final int height;
+    private int highscore = 0;
     private Space space;
-    private SpaceBuilder spaceBuilder;
 
     //FPS Variables
     private boolean running = false;
@@ -54,8 +53,6 @@ public class Game {
         addCloseScreenListener();
         this.height=height;
         this.width=width;
-        this.spaceBuilder = new SpaceBuilder(width, height);
-        this.space = spaceBuilder.createSpace();
 
         //State Pattern Implementation Part
         this.gameState = new MenuState(this, screen); //Defines the Menu State has the initial state passing the object itself (game object)
@@ -218,5 +215,12 @@ public class Game {
 
     public int getHeight() { return height;}
 
+    public int getHighscore() {
+        return highscore;
+    }
+
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
+    }
 }
 

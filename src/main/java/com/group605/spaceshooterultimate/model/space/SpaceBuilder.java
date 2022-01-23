@@ -10,10 +10,12 @@ public class SpaceBuilder {
 
     private int height;
     private int width;
+    private int highscore;
 
-    public SpaceBuilder(int width, int height){
+    public SpaceBuilder(int width, int height, int highscore){
         this.width = width;
         this.height = height;
+        this.highscore = highscore;
     }
 
     public Space createSpace(){
@@ -35,7 +37,7 @@ public class SpaceBuilder {
         space.setITEM_NUMBER(2);
         space.setItem_score(0);
         space.setScore(0);
-        space.setHighScore(0);
+        space.setHighScore(highscore);
         return space;
     }
 

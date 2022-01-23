@@ -111,7 +111,7 @@ public class PlayerController {
             explosionController.PlayerDeathExplosion();
         }
         if(player.isPlayerDead()){
-            game.changeGameState(new GameOverState(game, screen));
+            game.changeGameState(new GameOverState(game, screen, space.getHighScore(), space.getScore()));
         }
     }
 

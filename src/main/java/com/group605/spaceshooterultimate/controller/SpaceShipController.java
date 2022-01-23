@@ -17,7 +17,7 @@ public class SpaceShipController {
 
     public SpaceShipController(Space space){
         this.space = space;
-        this.builder = new SpaceBuilder(space.getWidth(), space.getHeight());
+        this.builder = new SpaceBuilder(space.getWidth(), space.getHeight(), space.getHighScore());
         this.enemyController = new EnemyController(space);
         this.explosionController = new ExplosionController(space, space.getPlayer());
     }

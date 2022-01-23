@@ -15,10 +15,10 @@ public class GameOverController {
     private final GameOverViewer gameOverViewer;
     private int i;
 
-    public GameOverController(Game game, Screen screen) throws IOException {
+    public GameOverController(Game game, Screen screen, int highscore, int score) throws IOException {
         this.game = game;
         this.screen = screen;
-        this.gameOverViewer = new GameOverViewer(screen);
+        this.gameOverViewer = new GameOverViewer(screen, highscore, score);
         this.i = 1; //The place where text will be highlighted first -> 1- PLAY , 2-QUIT
     }
 
@@ -58,4 +58,5 @@ public class GameOverController {
         manageKeyPress();
         gameOverViewer.draw();
     }
+
 }

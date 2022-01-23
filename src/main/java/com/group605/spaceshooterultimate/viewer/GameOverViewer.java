@@ -12,10 +12,14 @@ public class GameOverViewer{
     protected TextGraphics graphics;
     protected int TEXT_OFFSET;
     protected String cursorstr1 = ">>> PLAY p", cursorstr2 ="QUIT";
+    protected int highscore, score;
+    protected String str;
 
-    public GameOverViewer(Screen screen)throws IOException{
+    public GameOverViewer(Screen screen, int highscore, int score)throws IOException{
         this.screen = screen;
         this.graphics = screen.newTextGraphics();
+        this.highscore = highscore;
+        this.score = score;
         TEXT_OFFSET = 3;
     }
 
@@ -33,11 +37,13 @@ public class GameOverViewer{
     public void draw() throws IOException {
         screen.clear();
         graphics.putString(screen.getTerminalSize().getColumns()/2, screen.getTerminalSize().getRows()/2, "GAME OVER g YOU LOST!");
-        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET/2, screen.getTerminalSize().getRows()/2 + TEXT_OFFSET, "SESSION HIGH SCORE: ");
-        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 2*TEXT_OFFSET, "SESSION SCORE: ");
+        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET/2, screen.getTerminalSize().getRows()/2 + TEXT_OFFSET, "SESSION HIGH SCORE: " + highscore);
+        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 2*TEXT_OFFSET, "SESSION SCORE: " + score);
         graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 3*TEXT_OFFSET, cursorstr1);
         graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 4*TEXT_OFFSET, cursorstr2);
         graphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
         screen.refresh();
     }
+
+
 }

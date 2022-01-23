@@ -12,9 +12,9 @@ public class GameOverState extends GameState{
     private Screen screen;
     private GameOverController gameOverController;
 
-    public GameOverState(Game game, Screen screen) throws IOException {
+    public GameOverState(Game game, Screen screen, int highscore, int score) throws IOException {
         super(game, screen);
-        this.gameOverController = new GameOverController(game, screen);
+        this.gameOverController = new GameOverController(game, screen, highscore, score);
     }
 
     @Override
