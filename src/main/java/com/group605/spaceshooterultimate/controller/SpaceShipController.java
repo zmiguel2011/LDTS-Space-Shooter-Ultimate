@@ -22,11 +22,9 @@ public class SpaceShipController {
         //This will randomize a SpaceShip and move it
         //As well as randomize the amount of times that movement will be repeated in order to avoid a very similar movement for every SpaceShip
         Random random1 = new Random();
-        Random random2 = new Random();
-        int bound = space.getSpaceships().size();
-        for(int i = 0; i<random2.nextInt(space.getMAX_MOVEMENT_NUMBER()+1); i++){
-            //System.out.println(bound);
-        }
+        Spaceship kekw = space.getSpaceships().get(random1.nextInt(space.getSpaceships().size()));
+        kekw.moveEnemy();
+
     }
 
     /*
