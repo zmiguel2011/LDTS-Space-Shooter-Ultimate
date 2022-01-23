@@ -33,9 +33,8 @@ public class MenuViewer{
     public void draw() throws IOException {
         screen.clear();
         graphics.putString(screen.getTerminalSize().getColumns()/2, screen.getTerminalSize().getRows()/2, "SPACE SHOOTER ULTIMATE");
-        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET/2, screen.getTerminalSize().getRows()/2 + TEXT_OFFSET, "SESSION HIGH SCORE: ");
-        graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 2*TEXT_OFFSET, cursorstr1);
-        graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 3*TEXT_OFFSET, cursorstr2);
+        graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + TEXT_OFFSET, cursorstr1);
+        graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 2*TEXT_OFFSET, cursorstr2);
         graphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
         screen.refresh();
     }
