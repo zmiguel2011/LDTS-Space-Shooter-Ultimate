@@ -19,6 +19,7 @@ public class SpaceController {
     private final SpaceShipController spaceshipController;
     private final ShootingController shootingController;
     private final SessionInfoController sessionInfoController;
+    private final ItemController itemController;
 
     public SpaceController(Game game, Screen screen, Space space) throws IOException{
         this.game = game;
@@ -32,6 +33,7 @@ public class SpaceController {
         this.shootingController = new ShootingController(space, space.getPlayer());
         this.explosionController = new ExplosionController(space,space.getPlayer());
         this.sessionInfoController = new SessionInfoController(space);
+        this.itemController = new ItemController(space);
     }
 
 
@@ -45,5 +47,6 @@ public class SpaceController {
         spaceshipController.manageSpaceships();
         asteroidController.manageAsteroids();
         explosionController.manageExplosions();
+        itemController.manageItems();
     }
 }

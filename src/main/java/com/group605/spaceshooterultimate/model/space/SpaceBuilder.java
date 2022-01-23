@@ -61,14 +61,13 @@ public class SpaceBuilder {
 
     public List<Item> createItems(Space space){
         List<Item> items = new ArrayList<>();
-
         if(space.canSpawnItem()){
             Random random = new Random();
             int spawnX;
             int spawnY;
             while(true){
-                spawnX = random.nextInt(98 - 2) + 2;
-                spawnY = random.nextInt(38 - 2) + 2;
+                spawnX = random.nextInt(space.getWidth() - 5) + 5;
+                spawnY = random.nextInt(space.getHeight() - 11) + 5;
                 for (Item item : space.getItems()){
                     if(item.getPosition().getY() == spawnY && item.getPosition().getX() == spawnX){
                         break;
@@ -77,7 +76,7 @@ public class SpaceBuilder {
                 break;
             }
             int disTime = space.getScore() + random.nextInt(300 - 100) + 100;
-            space.getItems().add(new Item(spawnX, spawnY,disTime));
+            space.getItems().add(new Item(spawnX,spawnY,disTime));
         }
         return items;
     }

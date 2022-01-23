@@ -16,6 +16,6 @@ public class ItemViewer extends EntityViewer {
     public void draw(Entity entity){
         graphics.setForegroundColor(TextColor.Factory.fromString("#ff007b"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "h");
+        graphics.putString(new TerminalPosition(entity.getPosition().getX(), entity.getPosition().getY()), "h");
     }
 }
