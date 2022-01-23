@@ -40,7 +40,6 @@ public class SpaceBuilder {
 
         for (int i=0; i<spaceShipAmmount; i++) {
             spaceships.add(new Spaceship(random.nextInt(pos),1, health));
-            System.out.println("teste");
         }
         return spaceships;
     }
