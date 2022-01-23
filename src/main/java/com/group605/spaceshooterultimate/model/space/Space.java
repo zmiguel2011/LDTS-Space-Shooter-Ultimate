@@ -148,7 +148,6 @@ public class Space{
         return true;
     }
 
-
     public boolean canSpawnItem(){
         if(score % 100 == 0 && score != 0 && item_score != score && items.size() < ITEM_NUMBER){
             item_score = score;

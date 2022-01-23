@@ -1,9 +1,11 @@
 package com.group605.spaceshooterultimate.controller;
 
+import com.group605.spaceshooterultimate.model.entity.EnemyShot;
 import com.group605.spaceshooterultimate.model.entity.Explosion;
 import com.group605.spaceshooterultimate.model.entity.Spaceship;
 import com.group605.spaceshooterultimate.model.space.Space;
 import com.group605.spaceshooterultimate.model.space.SpaceBuilder;
+import com.group605.spaceshooterultimate.viewer.EnemyShotViewer;
 
 import java.util.Random;
 
@@ -52,6 +54,15 @@ public class SpaceShipController {
 
         for (Spaceship spaceship : space.getSpaceships()){
             enemyController.isEnemyHit(spaceship);
+            for(EnemyShot enemyShot: spaceship.getEnemyShots()) {
+                if (space.canEntityMove(enemyShot.getPosition())) {
+                    enemyShot.move();
+                } else {
+                    spaceship.getEnemyShots().remove(enemyShot);
+                    break;
+                }
+            }
+            enemyController.EnemyShotFire(spaceship);
             if(spaceship.isDead()){
                 space.getEnemyExplosions().add(new Explosion(spaceship.getPosition().getX(), spaceship.getPosition().getY()));
                 space.getSpaceships().remove(spaceship);
