@@ -33,7 +33,9 @@ public class SpaceBuilder {
         space.setSPACESHIP_NUMBER(3);
         space.setMAX_MOVEMENT_NUMBER(5);
         space.setITEM_NUMBER(2);
-        //space.setItem_score();
+        space.setItem_score(0);
+        space.setScore(0);
+        space.setHighScore(0);
         return space;
     }
 

@@ -3,7 +3,7 @@ package com.group605.spaceshooterultimate.controller;
 
 import com.googlecode.lanterna.screen.Screen;
 import com.group605.spaceshooterultimate.Game;
-import com.group605.spaceshooterultimate.state.MenuState;
+import com.group605.spaceshooterultimate.state.PlayState;
 import com.group605.spaceshooterultimate.viewer.GameOverViewer;
 
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class GameOverController {
                 break;
             case NEXT:
                 if(i==1)
-                    game.changeGameState(new MenuState(game, screen));
+                    game.changeGameState(new PlayState(game, screen));
                 else
                     game.closeTerminal();
                 break;
