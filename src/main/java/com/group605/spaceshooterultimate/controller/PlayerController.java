@@ -34,20 +34,28 @@ public class PlayerController {
         Game.action action = game.handleKeyPress();
         switch (action) {
             case UP:
-                player.moveUp();
-                player.setMovementCounter(player.getMovementCounter()+1);
+                if(space.canEntityMove(player.moveUp())) {
+                    player.setPosition(player.moveUp());
+                    player.setMovementCounter(player.getMovementCounter() + 1);
+                }
                 break;
             case DOWN:
-                player.moveDown();
-                player.setMovementCounter(player.getMovementCounter()+1);
+                if(space.canEntityMove(player.moveDown())) {
+                    player.setPosition(player.moveDown());
+                    player.setMovementCounter(player.getMovementCounter() + 1);
+                }
                 break;
             case LEFT:
-                player.moveLeft();
-                player.setMovementCounter(player.getMovementCounter()+1);
+                if(space.canEntityMove(player.moveLeft())) {
+                    player.setPosition(player.moveLeft());
+                    player.setMovementCounter(player.getMovementCounter() + 1);
+                }
                 break;
             case RIGHT:
-                player.moveRight();
-                player.setMovementCounter(player.getMovementCounter()+1);
+                if(space.canEntityMove(player.moveRight())) {
+                    player.setPosition(player.moveRight());
+                    player.setMovementCounter(player.getMovementCounter() + 1);
+                }
                 break;
             case SHOOT:
                 FireWeapon(); player.setShooting(true);

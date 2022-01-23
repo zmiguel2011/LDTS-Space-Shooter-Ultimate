@@ -21,15 +21,15 @@ public class Player extends Entity {
         this.lives = lifes;
     }
 
-    public void moveUp(){ setPosition(new Position(position.getX(), position.getY()-1));}
+    public Position moveUp(){ return new Position(position.getX(), position.getY()-1);}
 
-    public void moveDown(){ setPosition(new Position(position.getX(), position.getY()+1));}
+    public Position moveDown(){ return new Position(position.getX(), position.getY()+1);}
 
-    public void moveRight(){
-        setPosition(new Position(position.getX()+1, position.getY()));
+    public Position moveRight(){
+        return new Position(position.getX() + 1, position.getY());
     }
 
-    public void moveLeft(){ setPosition(new Position(position.getX()-1, position.getY()));}
+    public Position moveLeft(){ return new Position(position.getX() - 1, position.getY()); }
 
     public boolean isPlayerDead() {
         if(this.getLives() == 0) return true;
