@@ -26,6 +26,7 @@ public class SpaceBuilder {
         space.setSingleShots(createSingleShots());
         space.setDoubleShots(createDoubleShots());
         space.setBurstShots(createBurstShots());
+        space.setExplosions(createExplosions());
         space.setAmmotype(1);
         space.setMAX_MOVEMENT_NUMBER(5);
         //space.setItem_score();
@@ -76,6 +77,7 @@ public class SpaceBuilder {
         return items;
     }
 
+    public List<Explosion> createExplosions() { return new ArrayList<>(); }
 
     public List<SingleShot> createSingleShots() {
         return new ArrayList<>();

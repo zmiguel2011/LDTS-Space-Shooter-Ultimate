@@ -24,7 +24,7 @@ public class SpaceController {
         this.spaceViewer = new SpaceViewer(screen, space);
         this.playerController = new PlayerController(game, screen, space);
         this.asteroidController = new AsteroidController();
-        this.explosionController = new ExplosionController();
+        this.explosionController = new ExplosionController(space, space.getPlayer());
         this.spaceshipController = new SpaceShipController(space);
         this.shootingController = new ShootingController(space, space.getPlayer());
     }

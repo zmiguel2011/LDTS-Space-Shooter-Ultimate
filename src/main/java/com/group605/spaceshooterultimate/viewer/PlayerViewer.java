@@ -2,16 +2,23 @@ package com.group605.spaceshooterultimate.viewer;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.group605.spaceshooterultimate.model.entity.Entity;
+import com.group605.spaceshooterultimate.model.entity.Player;
 
-public class PlayerViewer extends EntityViewer {
+public class PlayerViewer {
 
-    public PlayerViewer(Screen screen){ super(screen); }
+    protected Screen screen;
+    protected TextGraphics graphics;
 
-    @Override
-    public void draw(Entity entity){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#00fffb"));
-        graphics.putString(new TerminalPosition(entity.getPosition().getX(), entity.getPosition().getY()), "s");
+    public PlayerViewer(Screen screen){
+        this.screen = screen;
+        this.graphics = screen.newTextGraphics();
+    }
+
+    public void draw(Player player){
+        if (player.isSpawnProtectionON()) graphics.setForegroundColor(TextColor.Factory.fromString("#ffd500"));
+        else graphics.setForegroundColor(TextColor.Factory.fromString("#00fffb"));
+        graphics.putString(new TerminalPosition(player.getPosition().getX(), player.getPosition().getY()), "s");
     }
 }

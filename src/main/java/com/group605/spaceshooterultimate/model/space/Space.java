@@ -14,6 +14,8 @@ public class Space{
     private List<BurstShot> burstShots;
     private List<Asteroid> asteroids;
     private List<Spaceship> spaceships;
+    private List<Explosion> explosions;
+    private List<Explosion> enemyExplosions;
     private List<Item> items;
     private int ASTEROID_NUMBER; //Sets how many Asteroids will spawn together
     private int SPACESHIP_NUMBER; //Sets how many SpaceShip will spawn together
@@ -23,7 +25,6 @@ public class Space{
     private int item_score; // checks if item for certain score has already spawned;
     private int score;
     private int highScore;
-    private List<EnemyShot> enemyShots;
 
     public Space(int width, int height) {
         this.width = width;
@@ -64,10 +65,6 @@ public class Space{
 
     public void setSingleShots(List<SingleShot> singleShots) {
         this.singleShots = singleShots;
-    }
-
-    public void setEnemyShots(List<EnemyShot> enemyShots){
-        this.enemyShots = enemyShots;
     }
 
     public void setSpaceships(List<Spaceship> spaceships) {
@@ -234,5 +231,21 @@ public class Space{
 
     private void ScoreIncrement(int inc) {
         score = score + inc;
+    }
+
+    public List<Explosion> getExplosions() {
+        return explosions;
+    }
+
+    public void setExplosions(List<Explosion> explosions) {
+        this.explosions = explosions;
+    }
+
+    public List<Explosion> getEnemyExplosions() {
+        return enemyExplosions;
+    }
+
+    public void setEnemyExplosions(List<Explosion> enemyExplosions) {
+        this.enemyExplosions = enemyExplosions;
     }
 }
