@@ -1,10 +1,10 @@
 package com.group605.spaceshooterultimate.controller;
 
-import com.group605.spaceshooterultimate.model.entity.BurstShot;
-import com.group605.spaceshooterultimate.model.entity.DoubleShot;
-import com.group605.spaceshooterultimate.model.entity.Enemy;
-import com.group605.spaceshooterultimate.model.entity.SingleShot;
+import com.group605.spaceshooterultimate.model.entity.*;
 import com.group605.spaceshooterultimate.model.space.Space;
+import com.group605.spaceshooterultimate.viewer.EnemyShotViewer;
+
+import java.util.Random;
 
 public class EnemyController {
 
@@ -37,5 +37,18 @@ public class EnemyController {
             }
         }
         return false;
+    }
+
+    public void EnemyShotFire(Spaceship spaceship) {
+        Random random = new Random();
+        int distance = random.nextInt(5);
+
+        if (spaceship.getEnemyShots().size() == 0) {
+            spaceship.addEnemyShot(spaceship.getPosition().getX(), spaceship.getPosition().getY()+1);
+        }
+        else if (spaceship.getEnemyShots().get(spaceship.getEnemyShots().size() - 1).getPosition().getY() - space.getPlayer().getPosition().getY() == distance) {
+            spaceship.getEnemyShots().add(new EnemyShot(spaceship.getPosition().getX(), spaceship.getPosition().getY()+1));
+        }
+
     }
 }

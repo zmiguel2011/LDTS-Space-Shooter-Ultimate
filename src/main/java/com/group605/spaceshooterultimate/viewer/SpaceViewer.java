@@ -21,6 +21,7 @@ public class SpaceViewer {
     protected SpaceShipViewer spaceShipViewer;
     protected ExplosionViewer explosionViewer;
     protected SessionInfoViewer sessionInfoViewer;
+    protected EnemyShotViewer enemyShotViewer;
 
     public SpaceViewer(Screen screen, Space space){
         this.screen = screen;
@@ -36,6 +37,7 @@ public class SpaceViewer {
         spaceShipViewer = new SpaceShipViewer(screen);
         explosionViewer = new ExplosionViewer(screen);
         sessionInfoViewer = new SessionInfoViewer(screen);
+        enemyShotViewer = new EnemyShotViewer(screen);
     }
 
     public void draw() throws IOException {
@@ -55,7 +57,13 @@ public class SpaceViewer {
         //Draw SingleShots
         for(SingleShot singleShot: space.getSingleShots()) singleShotViewer.draw(singleShot);
         //Draw Spaceships
-        for(Spaceship spaceShip : space.getSpaceships()) spaceShipViewer.draw(spaceShip);
+        for(Spaceship spaceShip : space.getSpaceships()){
+            spaceShipViewer.draw(spaceShip);
+            //Draw EnemyShots
+            for(EnemyShot enemyShot: spaceShip.getEnemyShots()) {
+                EnemyShotViewer.draw(enemyShot);
+            }
+        }
         //Draw Explosions
         for(Explosion explosion : space.getExplosions()) explosionViewer.draw(explosion);
         //Draw Enemy Explosions

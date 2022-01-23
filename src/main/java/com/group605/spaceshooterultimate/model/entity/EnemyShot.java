@@ -4,7 +4,7 @@ import com.group605.spaceshooterultimate.model.entity.Bullet;
 
 public class EnemyShot extends Bullet {
 
-    EnemyShot(int x, int y){
+    public EnemyShot(int x, int y){
         super(x, y);
     }
 
