@@ -148,42 +148,6 @@ public class Space{
         return true;
     }
 
-    private boolean isEnemyHit(Enemy enemy){
-        for(SingleShot singleShot : singleShots){
-            if(singleShot.checkBulletImpact(enemy.getPosition())) {
-                enemy.setHealth(enemy.getHealth() - singleShot.getDamage());
-                ScoreIncrement(100);
-                return true;
-            }
-        }
-        for(DoubleShot doubleShot : doubleShots){
-            if(doubleShot.checkBulletImpact(enemy.getPosition())) {
-                enemy.setHealth(enemy.getHealth() - doubleShot.getDamage());
-                ScoreIncrement(100);
-                return true;
-            }
-        }
-        for(BurstShot burstShot : burstShots){
-            if(burstShot.checkBulletImpact(enemy.getPosition())) {
-                enemy.setHealth(enemy.getHealth() - burstShot.getDamage());
-                ScoreIncrement(100);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isPlayerHit(Position position){
-        for (Spaceship spaceship : spaceships) {
-            for(EnemyShot enemyShot : spaceship.getEnemyShots()) {
-                if (enemyShot.checkBulletImpact(position)) {
-                    spaceship.getEnemyShots().remove(enemyShot);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     public boolean canSpawnItem(){
         if(score % 100 == 0 && score != 0 && item_score != score && items.size() < ITEM_NUMBER){

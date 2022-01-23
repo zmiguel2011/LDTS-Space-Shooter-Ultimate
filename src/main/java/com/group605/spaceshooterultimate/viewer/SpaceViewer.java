@@ -56,6 +56,8 @@ public class SpaceViewer {
         for(Spaceship spaceShip : space.getSpaceships()) spaceShipViewer.draw(spaceShip);
         //Draw Explosions
         for(Explosion explosion : space.getExplosions()) explosionViewer.draw(explosion);
+        //Draw Enemy Explosions
+        for(Explosion explosion : space.getEnemyExplosions()) explosionViewer.draw(explosion);
         screen.refresh();
     }
 }

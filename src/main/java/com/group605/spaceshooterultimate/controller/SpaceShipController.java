@@ -50,6 +50,12 @@ public class SpaceShipController {
 
         for (Spaceship spaceship : space.getSpaceships()){
             enemyController.isEnemyHit(spaceship);
+            if(spaceship.isDead()){
+                space.getEnemyExplosions().add(new Explosion(spaceship.getPosition().getX(), spaceship.getPosition().getY()));
+                space.getSpaceships().remove(spaceship);
+                space.getPlayer().setPlayerTracker(space.getPlayer().getPosition());
+                break;
+            }
 
             if(spaceship.checkImpact(spaceship, space.getPlayer())){ //Verifica apenas se a Spaceship bate no Player, isPlayerHit (verifica se as balas da spaceship acertam no Player) é feito no PlayerController
                 space.getSpaceships().remove(spaceship);
@@ -58,11 +64,12 @@ public class SpaceShipController {
                 break;
             }
 
-            if(/* space.canEntityMove(spaceship.getPosition()) ||*/ spaceship.isDead()){
+            /*
+            if(space.canEntityMove(spaceship.getPosition())){
                 space.getSpaceships().remove(spaceship);
                 break;
             }
-
+            */
         }
     }
 }

@@ -7,6 +7,7 @@ public class Player extends Entity {
     private boolean SpawnProtection = true;
     private int movementCounter = 0;
     private Position RespawnPosition = new Position(60,15);
+    private Position playerTracker;
 
     public Player(int x, int y){
         super(x,y);
@@ -62,6 +63,14 @@ public class Player extends Entity {
 
     public Position getRespawnPosition() {
         return RespawnPosition;
+    }
+
+    public Position getPlayerTracker() {
+        return playerTracker;
+    }
+
+    public void setPlayerTracker(Position playerTracker) {
+        this.playerTracker = playerTracker;
     }
 
     //Quick Easy Way to Display Player Amount of Lives Remaining in an Arcade Way
