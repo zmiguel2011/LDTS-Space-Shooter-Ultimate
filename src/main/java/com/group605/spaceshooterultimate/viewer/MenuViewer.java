@@ -39,7 +39,7 @@ public class MenuViewer{
         graphics.putString(screen.getTerminalSize().getColumns()/2, screen.getTerminalSize().getRows()/2 + TEXT_OFFSET, cursorstr1);
         graphics.putString(screen.getTerminalSize().getColumns()/2, screen.getTerminalSize().getRows()/2 + 2*TEXT_OFFSET, cursorstr2);
         graphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
-        drawTitle(new FileReader().readFile("resources/SpaceShooterTitle"), "#ffffff");
+        drawTitle(new FileReader().readFile("resources/TextImages/SpaceShooterTitle"), "#ffffff");
         screen.refresh();
     }
 

@@ -20,10 +20,12 @@ public class ItemController {
                 if(player.getLives() == 3){
                     space.setScore(space.getScore() + 100);
                     space.getItems().remove(item);
+                    space.setItem_score(space.getScore());
                     break;
                 }
                 player.setLives(player.getLives() + 1);
                 space.getItems().remove(item);
+                space.setItem_score(space.getScore());
                 break;
             }
         }

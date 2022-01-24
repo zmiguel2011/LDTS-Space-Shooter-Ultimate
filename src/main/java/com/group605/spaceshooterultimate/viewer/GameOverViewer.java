@@ -45,7 +45,7 @@ public class GameOverViewer{
         graphics.putString(screen.getTerminalSize().getColumns()/2+4*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 3*TEXT_OFFSET, cursorstr1);
         graphics.putString(screen.getTerminalSize().getColumns()/2+4*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 4*TEXT_OFFSET, cursorstr2);
         graphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
-        drawSpaceship(new FileReader().readFile("resources/Spaceship"), "#ffffff");
+        drawSpaceship(new FileReader().readFile("resources/TextImages/Spaceship"), "#ffffff");
         screen.refresh();
     }
 
