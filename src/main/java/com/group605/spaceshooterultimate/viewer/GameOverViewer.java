@@ -1,10 +1,13 @@
 package com.group605.spaceshooterultimate.viewer;
 
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import com.group605.spaceshooterultimate.FileReader;
 
 import java.io.IOException;
+import java.util.List;
 
 public class GameOverViewer{
 
@@ -36,14 +39,24 @@ public class GameOverViewer{
 
     public void draw() throws IOException {
         screen.clear();
-        graphics.putString(screen.getTerminalSize().getColumns()/2, screen.getTerminalSize().getRows()/2, "GAME OVER g YOU LOST!");
-        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET/2, screen.getTerminalSize().getRows()/2 + TEXT_OFFSET, "SESSION HIGH SCORE: " + highscore);
-        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 2*TEXT_OFFSET, "SESSION SCORE: " + score);
-        graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 3*TEXT_OFFSET, cursorstr1);
-        graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 4*TEXT_OFFSET, cursorstr2);
+        graphics.putString(screen.getTerminalSize().getColumns()/2+TEXT_OFFSET, screen.getTerminalSize().getRows()/2, "GAME OVER g YOU LOST!");
+        graphics.putString(screen.getTerminalSize().getColumns()/2+2*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + TEXT_OFFSET, "SESSION HIGH SCORE: " + highscore);
+        graphics.putString(screen.getTerminalSize().getColumns()/2+3*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 2*TEXT_OFFSET, "SESSION SCORE: " + score);
+        graphics.putString(screen.getTerminalSize().getColumns()/2+4*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 3*TEXT_OFFSET, cursorstr1);
+        graphics.putString(screen.getTerminalSize().getColumns()/2+4*TEXT_OFFSET, screen.getTerminalSize().getRows()/2 + 4*TEXT_OFFSET, cursorstr2);
         graphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
+        drawSpaceship(new FileReader().readFile("resources/Spaceship"), "#ffffff");
         screen.refresh();
     }
 
+    private void drawSpaceship(List<String> spaceship, String hexColor) {
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        graphics.setForegroundColor(TextColor.Factory.fromString(hexColor));
+        for(int i=0;i<spaceship.size();i++){
+            if(spaceship.get(i) != " "){
+                graphics.putString(1,10+i,spaceship.get(i), SGR.BOLD);
+            }
+        }
+    }
 
 }
