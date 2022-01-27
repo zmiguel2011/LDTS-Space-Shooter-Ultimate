@@ -188,14 +188,6 @@ public class Space{
         return highScore;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    private void ScoreIncrement(int inc) {
-        score = score + inc;
-    }
-
     public List<Explosion> getExplosions() {
         return explosions;
     }

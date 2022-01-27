@@ -7,6 +7,7 @@ import com.group605.spaceshooterultimate.model.space.SpaceBuilder;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class AsteroidController {
     private Space space;
     private SpaceBuilder builder;
@@ -25,7 +26,7 @@ public class AsteroidController {
 
         if(space.getAsteroids().size() < space.getASTEROID_NUMBER()){
             if (space.getScore() <= 2500) space.getAsteroids().add(new Asteroid(random.nextInt(space.getWidth()), 1, 0.3, "small"));
-            else if (space.getScore() >= 2500 & space.getScore() <= 5000) space.getAsteroids().add(new Asteroid(random.nextInt(space.getWidth()), +1, 0.5, "medium"));
+            else if (space.getScore() >= 2500 && space.getScore() <= 5000) space.getAsteroids().add(new Asteroid(random.nextInt(space.getWidth()), +1, 0.5, "medium"));
             else space.getAsteroids().add(new Asteroid(random.nextInt(space.getWidth()), 1, 1, "large"));
         }
     }

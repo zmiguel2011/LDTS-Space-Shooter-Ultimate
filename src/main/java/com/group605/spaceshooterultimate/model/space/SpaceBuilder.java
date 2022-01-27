@@ -56,7 +56,7 @@ public class SpaceBuilder {
 
         List<Asteroid> asteroids = new ArrayList<>();
         for (int i = 0; i < x; i++) {
-            asteroids.add(new Asteroid(random.nextInt(width), (height - height) + 1, health, "small"));
+            asteroids.add(new Asteroid(random.nextInt(width), 1, health, "small"));
         }
         return asteroids;
     }

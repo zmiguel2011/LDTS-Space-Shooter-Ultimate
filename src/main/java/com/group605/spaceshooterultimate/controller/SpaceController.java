@@ -7,8 +7,8 @@ import com.group605.spaceshooterultimate.viewer.SpaceViewer;
 
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public class SpaceController {
-
     private final Game game;
     private final Screen screen;
     private final Space space;

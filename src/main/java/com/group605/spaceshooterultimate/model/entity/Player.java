@@ -49,8 +49,8 @@ public class Player extends Entity {
         return SpawnProtection;
     }
 
-    public void setSpawnProtection(boolean spawnProtection) {
-        SpawnProtection = spawnProtection;
+    public void setSpawnProtection(boolean spawnprotect) {
+        SpawnProtection = spawnprotect;
     }
 
     public int getMovementCounter() {

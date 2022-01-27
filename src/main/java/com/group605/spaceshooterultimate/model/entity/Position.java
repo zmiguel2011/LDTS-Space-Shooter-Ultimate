@@ -1,5 +1,7 @@
 package com.group605.spaceshooterultimate.model.entity;
 
+import javax.annotation.processing.SupportedSourceVersion;
+
 public class Position {
 
     int x,y;
@@ -25,7 +27,7 @@ public class Position {
         this.y = y;
     }
 
-    @Override
+    @Override @SuppressWarnings("EqualsHashCode")
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

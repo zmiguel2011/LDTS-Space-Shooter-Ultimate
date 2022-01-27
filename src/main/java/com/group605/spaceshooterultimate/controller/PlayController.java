@@ -7,6 +7,7 @@ import com.group605.spaceshooterultimate.model.space.Space;
 
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public class PlayController {
 
     private final Game game;

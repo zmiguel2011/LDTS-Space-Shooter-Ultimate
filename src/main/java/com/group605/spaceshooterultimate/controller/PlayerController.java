@@ -31,8 +31,8 @@ public class PlayerController {
     }
 
     public void manageKeyPress() throws IOException {
-        Game.action action = game.handleKeyPress();
-        switch (action) {
+        Game.action Action = game.handleKeyPress();
+        switch (Action) {
             case UP:
                 if(space.canEntityMove(player.moveUp())) {
                     player.setPosition(player.moveUp());
