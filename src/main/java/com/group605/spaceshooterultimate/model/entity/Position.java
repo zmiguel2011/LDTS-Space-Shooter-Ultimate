@@ -1,6 +1,4 @@
-package com.group605.spaceshooterultimate;
-
-import java.util.Objects;
+package com.group605.spaceshooterultimate.model.entity;
 
 public class Position {
 

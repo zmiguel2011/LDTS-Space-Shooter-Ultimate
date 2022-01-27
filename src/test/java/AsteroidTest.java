@@ -1,5 +1,5 @@
-import com.group605.spaceshooterultimate.Asteroid;
-import com.group605.spaceshooterultimate.Player;
+import com.group605.spaceshooterultimate.model.entity.Asteroid;
+import com.group605.spaceshooterultimate.model.entity.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

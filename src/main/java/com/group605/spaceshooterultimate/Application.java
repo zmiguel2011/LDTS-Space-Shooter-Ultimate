@@ -6,7 +6,7 @@ import java.net.URISyntaxException;
 
 public class Application{
     public static void main(String[] args) throws IOException, InterruptedException, FontFormatException, URISyntaxException {
-        Game game = new Game(155, 60);
+        Game game = new Game(120, 30);
         game.run();
     }
 }

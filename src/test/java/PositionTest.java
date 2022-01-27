@@ -1,4 +1,4 @@
-import com.group605.spaceshooterultimate.Position;
+import com.group605.spaceshooterultimate.model.entity.Position;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

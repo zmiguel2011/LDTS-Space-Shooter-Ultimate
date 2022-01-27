@@ -1,11 +1,7 @@
-package com.group605.spaceshooterultimate;
+package com.group605.spaceshooterultimate.model.entity;
 
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
+import com.group605.spaceshooterultimate.model.entity.Enemy;
+import com.group605.spaceshooterultimate.model.entity.EnemyShot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +11,9 @@ public class Spaceship extends Enemy {
 
     private List<EnemyShot> enemyShots;
 
-    Spaceship(int x, int y, double health) {
+    public Spaceship(int x, int y, double health) {
         super(x, y, health);
         this.enemyShots = new ArrayList<>();
-    }
-
-    public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#ff0000"));
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "e");
     }
 
     public List<EnemyShot> getEnemyShots(){

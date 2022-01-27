@@ -9,8 +9,12 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import com.group605.spaceshooterultimate.model.space.Space;
+import com.group605.spaceshooterultimate.state.GameState;
+import com.group605.spaceshooterultimate.state.MenuState;
 
 
+import javax.lang.model.util.ElementScanner6;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -24,13 +28,22 @@ public class Game {
     private final TerminalScreen screen;
     private final int width;
     private final int height;
+    private int highscore = 0;
+    private Space space;
 
     //FPS Variables
     private boolean running = false;
     private final int FPS = 30;
     private double averageFPS;
 
-    Space space = new Space(100,40);
+    private GameState gameState;
+
+    //KeyPress Part
+    public enum action {
+        UP, DOWN, LEFT, RIGHT,
+        SHOOT, QUIT, NEXT, SINGLE,
+        DOUBLE, BURST, OTHER
+    }
 
     public Game(int width, int height) throws IOException, FontFormatException {
         AWTTerminalFontConfiguration fontConfig = loadSpaceShooterUltimateFont();
@@ -39,7 +52,13 @@ public class Game {
         addCloseScreenListener();
         this.height=height;
         this.width=width;
+        this.gameState = new MenuState(this, screen); //Defines the Menu State has the initial state passing the object itself (game object)
     }
+
+    public void changeGameState(GameState gameState){
+        this.gameState = gameState;
+    }
+
 
     public Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height + 1);
@@ -96,12 +115,6 @@ public class Game {
         }
     }
 
-    public void draw() throws IOException{
-        screen.clear();
-        space.draw(screen.newTextGraphics()); //Calls the function responsible to draw the objects into the arena
-        screen.refresh();
-    }
-
     public void run() throws IOException, InterruptedException{
         running = true;
 
@@ -118,16 +131,12 @@ public class Game {
         // GAME LOOP
         while(running){
 
-            startTime = System.nanoTime();
+            this.gameState.selectController(); //When game starts running we advance to the controller of the first state
 
-            draw(); //Function that draws the objects on the screen
-            Player();
-            asteroids();
-            spaceships();
-            items();
-            explosions();
+            startTime = System.nanoTime();
             URDTimeMillis = (System.nanoTime() - startTime) / 1000000;
             waitTime = targetTime - URDTimeMillis;
+
 
             try {
                 Thread.sleep(waitTime);
@@ -142,51 +151,36 @@ public class Game {
                 totalTime = 0;
 
             }
-            if(space.getPlayer().getLives() <= 0){
-                System.out.println("GAME OVER! YOU LOST!");
-                if (space.getScore() > space.getHighScore()) space.SetHighScore();
-                System.out.println("YOU SET A NEW HIGH SCORE: " +space.getHighScore());
-                closeTerminal();
-            }
-            KeyStroke key = screen.pollInput(); //Reads the Key input; NOTE: pollInput()-> If no Input was read then it returns null
-            if(key == null)
-                continue;
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')   { //Verifies if it was 'q'
-                closeTerminal();
-                running = false;
-            }
-            if (key.getKeyType() == KeyType.EOF) { //Verifies if EOF got reached
-                running = false;
-            }
-            processKey(key);
         }
     }
 
-    private void Player() throws InterruptedException{
-        space.managePlayer();
+
+    public action handleKeyPress() throws IOException{
+        KeyStroke key = screen.pollInput();
+        if (key == null) return action.OTHER;
+        if (key.getKeyType() == KeyType.Escape) return action.QUIT;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()=='w' || key.getCharacter()=='W')) return action.UP;
+        else if (key.getKeyType() ==  KeyType.Character && (key.getCharacter()=='d' || key.getCharacter()=='D')) return action.RIGHT;
+        else if (key.getKeyType() ==  KeyType.Character && (key.getCharacter()=='s' || key.getCharacter()=='S')) return action.DOWN;
+        else if (key.getKeyType() ==  KeyType.Character && (key.getCharacter()=='a' || key.getCharacter()=='A')) return action.LEFT;
+        else if (key.getKeyType() ==  KeyType.Enter) return action.NEXT;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()==' ')) return action.SHOOT;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()=='1')) return action.SINGLE;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()=='2')) return action.DOUBLE;
+        else if (key.getKeyType() == KeyType.Character && (key.getCharacter()=='3')) return action.BURST;
+        else return action.OTHER;
     }
 
-    private void asteroids() throws InterruptedException {
-        space.createAsteroids();
-        space.manageAsteroid();
+    public int getWidth() { return width;}
+
+    public int getHeight() { return height;}
+
+    public int getHighscore() {
+        return highscore;
     }
 
-    private void spaceships() throws InterruptedException {
-        space.createSpaceships();
-        space.manageSpaceship();
-    }
-
-    private void items() throws InterruptedException{
-        space.createItem();
-        space.manageItems();
-    }
-
-    private void explosions() throws InterruptedException{
-        space.manageExplosions();
-        space.manageSpaceshipExplosions();
-    }
-    private void processKey(KeyStroke key){
-        space.processKey(key);
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
     }
 }
 
