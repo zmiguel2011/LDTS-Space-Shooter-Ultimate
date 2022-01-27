@@ -1,5 +1,7 @@
 package com.group605.spaceshooterultimate.model.entity;
 
+import com.group605.spaceshooterultimate.model.entity.Enemy;
+import com.group605.spaceshooterultimate.model.entity.EnemyShot;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,10 +3,12 @@ package com.group605.spaceshooterultimate.controller;
 import com.googlecode.lanterna.screen.Screen;
 import com.group605.spaceshooterultimate.Game;
 import com.group605.spaceshooterultimate.model.entity.EnemyShot;
+import com.group605.spaceshooterultimate.model.entity.Explosion;
 import com.group605.spaceshooterultimate.model.entity.Player;
 import com.group605.spaceshooterultimate.model.entity.Spaceship;
 import com.group605.spaceshooterultimate.model.space.Space;
 import com.group605.spaceshooterultimate.state.GameOverState;
+import com.group605.spaceshooterultimate.state.MenuState;
 
 import java.io.IOException;
 
