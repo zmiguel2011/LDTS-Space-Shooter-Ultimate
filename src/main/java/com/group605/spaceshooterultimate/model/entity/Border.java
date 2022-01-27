@@ -1,6 +1,5 @@
 package com.group605.spaceshooterultimate.model.entity;
 
-import com.group605.spaceshooterultimate.model.entity.Entity;
 
 public class Border extends Entity {
 

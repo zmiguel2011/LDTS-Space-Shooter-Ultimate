@@ -1,6 +1,6 @@
 package com.group605.spaceshooterultimate.viewer;
-import com.googlecode.lanterna.screen.Screen;
 
+import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.group605.spaceshooterultimate.model.entity.Entity;
 

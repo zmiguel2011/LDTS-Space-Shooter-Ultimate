@@ -1,5 +1,6 @@
 package com.group605.spaceshooterultimate.model.entity;
 
+
 public class Position {
 
     int x,y;

@@ -1,7 +1,6 @@
 package com.group605.spaceshooterultimate.controller;
 
 import com.group605.spaceshooterultimate.model.entity.Asteroid;
-import com.group605.spaceshooterultimate.model.entity.Spaceship;
 import com.group605.spaceshooterultimate.model.space.Space;
 import com.group605.spaceshooterultimate.model.space.SpaceBuilder;
 

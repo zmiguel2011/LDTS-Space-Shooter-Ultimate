@@ -2,7 +2,6 @@ package com.group605.spaceshooterultimate.controller;
 
 import com.group605.spaceshooterultimate.model.entity.Explosion;
 import com.group605.spaceshooterultimate.model.entity.Player;
-import com.group605.spaceshooterultimate.model.entity.Position;
 import com.group605.spaceshooterultimate.model.space.Space;
 
 public class ExplosionController {
