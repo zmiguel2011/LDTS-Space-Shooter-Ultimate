@@ -10,13 +10,6 @@ public class Item extends Entity{
         this.disappearTime = dis;
     }
 
-
-    boolean checkCollision(Position position){
-        if(position.equals(this.position)){
-            return true;
-        }
-        return false;
-    }
     public Position getPosition(){
         return this.position;
     }
