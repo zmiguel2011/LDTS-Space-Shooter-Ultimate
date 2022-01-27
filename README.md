@@ -157,7 +157,7 @@ The use of the State Pattern in the current design allows the following benefits
 
 ------
 
-### Space builder
+### Space Builder
 
 #### Problem in Context:
 A space consists in an agglomeration of elements such as borders, asteroids, spaceships, a player, items, etc.
@@ -173,7 +173,7 @@ As for the implementation, the SpaceBuilder is a class which knows how to constr
 The builder pattern is implemented in all the above classes by dividing the construction in smaller steps.
 
 <p align="center" justify="center">
-  <img src="resources/Images/BuilderUML.png"/>
+  <img src="resources/Images/BuilderUML.PNG"/>
 </p>
 <p align="center">
   <b><i>Image 3. Space Builder UML</i></b>
