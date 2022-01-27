@@ -1,5 +1,6 @@
 package com.group605.spaceshooterultimate.model.entity;
 
+import com.group605.spaceshooterultimate.model.entity.Position;
 
 public class Item extends Entity{
     protected int disappearTime;

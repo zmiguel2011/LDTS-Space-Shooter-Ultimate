@@ -1,6 +1,5 @@
 package com.group605.spaceshooterultimate.model.entity;
 
-
 public class DoubleShot extends Bullet {
 
     public DoubleShot(int x, int y) {

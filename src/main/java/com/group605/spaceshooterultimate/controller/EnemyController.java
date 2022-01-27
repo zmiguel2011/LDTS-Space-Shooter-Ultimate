@@ -2,6 +2,7 @@ package com.group605.spaceshooterultimate.controller;
 
 import com.group605.spaceshooterultimate.model.entity.*;
 import com.group605.spaceshooterultimate.model.space.Space;
+import com.group605.spaceshooterultimate.viewer.EnemyShotViewer;
 
 import java.util.Random;
 
