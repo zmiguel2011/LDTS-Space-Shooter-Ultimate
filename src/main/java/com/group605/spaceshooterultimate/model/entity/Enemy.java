@@ -1,5 +1,6 @@
 package com.group605.spaceshooterultimate.model.entity;
 
+
 public abstract class Enemy extends Entity {
     double health;
 

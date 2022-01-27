@@ -14,14 +14,13 @@ import com.group605.spaceshooterultimate.state.GameState;
 import com.group605.spaceshooterultimate.state.MenuState;
 
 
-import javax.lang.model.util.ElementScanner6;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static java.awt.Cursor.CROSSHAIR_CURSOR;
+
 
 public class Game {
 

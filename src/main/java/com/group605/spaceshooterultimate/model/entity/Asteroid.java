@@ -1,5 +1,6 @@
 package com.group605.spaceshooterultimate.model.entity;
 
+
 public class Asteroid extends Enemy {
     String size;
 

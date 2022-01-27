@@ -1,6 +1,5 @@
 package com.group605.spaceshooterultimate.model.entity;
 
-import javax.annotation.processing.SupportedSourceVersion;
 
 public class Position {
 
