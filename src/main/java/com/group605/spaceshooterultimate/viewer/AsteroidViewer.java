@@ -12,6 +12,7 @@ public class AsteroidViewer extends EntityViewer{
 
     public AsteroidViewer(Screen screen){ super(screen); }
 
+    @Override
     public void draw(Entity entity){
             graphics.setForegroundColor(TextColor.Factory.fromString("#525252"));
             graphics.enableModifiers(SGR.BOLD);

@@ -9,19 +9,16 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-import com.group605.spaceshooterultimate.model.space.Space;
 import com.group605.spaceshooterultimate.state.GameState;
 import com.group605.spaceshooterultimate.state.MenuState;
 
 
-import javax.lang.model.util.ElementScanner6;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static java.awt.Cursor.CROSSHAIR_CURSOR;
 
 public class Game {
 
@@ -29,7 +26,6 @@ public class Game {
     private final int width;
     private final int height;
     private int highscore = 0;
-    private Space space;
 
     //FPS Variables
     private boolean running = false;

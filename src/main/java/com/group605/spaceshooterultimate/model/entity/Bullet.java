@@ -1,7 +1,5 @@
 package com.group605.spaceshooterultimate.model.entity;
 
-import com.group605.spaceshooterultimate.model.entity.Entity;
-import com.group605.spaceshooterultimate.model.entity.Position;
 
 public abstract class Bullet extends Entity {
     private double damage;

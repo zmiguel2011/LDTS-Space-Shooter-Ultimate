@@ -72,9 +72,4 @@ public class Player extends Entity {
     public void setPlayerTracker(Position playerTracker) {
         this.playerTracker = playerTracker;
     }
-
-    //Quick Easy Way to Display Player Amount of Lives Remaining in an Arcade Way
-    public String displayLives(){
-        return Integer.toString(getLives());
-    }
 }
