@@ -25,12 +25,17 @@ public class SpaceShipController {
     }
 
     public void moveSpaceship(){
-        //This will randomize a SpaceShip and move it
-        //As well as randomize the amount of times that movement will be repeated in order to avoid a very similar movement for every SpaceShip
         Random random1 = new Random();
-        Spaceship spaceship = space.getSpaceships().get(random1.nextInt(space.getSpaceships().size()));
-        spaceship.moveEnemy();
-
+        Spaceship spaceship = space.getSpaceships().get(random1.nextInt(space.getSpaceships().size())); //Randomizes a spaceship in order to choose which one to move
+        if(space.canEntityMove(spaceship.getPosition()) == false){
+            if(spaceship.getPosition().getX()-space.getWidth() == 1) //Right Border Solver
+                spaceship.getPosition().setX(spaceship.getPosition().getX()-1);
+            else{
+                spaceship.getPosition().setX(spaceship.getPosition().getX()+1);//Left Border Solver
+            }
+        }
+        else
+            spaceship.moveEnemy();
     }
 
     /*
@@ -51,7 +56,6 @@ public class SpaceShipController {
 
     public void manageSpaceships(){
         moveSpaceship();
-
         for (Spaceship spaceship : space.getSpaceships()){
             enemyController.isEnemyHit(spaceship);
             for(EnemyShot enemyShot: spaceship.getEnemyShots()) {
@@ -76,12 +80,6 @@ public class SpaceShipController {
                 space.setSpaceships(builder.createSpaceShips(3,space.getWidth()/2,1));
                 space.getPlayer().setLives(space.getPlayer().getLives()-1);
                 explosionController.PlayerDeathExplosion();
-                break;
-            }
-
-
-            if(space.canEntityMove(spaceship.getPosition())==false){
-                space.getSpaceships().remove(spaceship);
                 break;
             }
         }
