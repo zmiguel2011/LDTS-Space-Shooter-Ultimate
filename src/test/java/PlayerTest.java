@@ -34,7 +34,7 @@ public class PlayerTest {
 
     @Test
     void displayLives(){
-        Assertions.assertEquals("3", player.displayLives());
+        Assertions.assertEquals(3, player.getLives());
     }
 
 }
