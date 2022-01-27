@@ -121,9 +121,11 @@ public class Game {
             startTime = System.nanoTime();
 
             draw(); //Function that draws the objects on the screen
+            Player();
             asteroids();
             spaceships();
             items();
+            explosions();
             URDTimeMillis = (System.nanoTime() - startTime) / 1000000;
             waitTime = targetTime - URDTimeMillis;
 
@@ -160,6 +162,10 @@ public class Game {
         }
     }
 
+    private void Player() throws InterruptedException{
+        space.managePlayer();
+    }
+
     private void asteroids() throws InterruptedException {
         space.createAsteroids();
         space.manageAsteroid();
@@ -173,6 +179,11 @@ public class Game {
     private void items() throws InterruptedException{
         space.createItem();
         space.manageItems();
+    }
+
+    private void explosions() throws InterruptedException{
+        space.manageExplosions();
+        space.manageSpaceshipExplosions();
     }
     private void processKey(KeyStroke key){
         space.processKey(key);

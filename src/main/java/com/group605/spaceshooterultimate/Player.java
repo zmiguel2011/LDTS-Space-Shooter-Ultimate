@@ -8,9 +8,11 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Player extends Entity{
     int lives = 3;
+    private boolean spawnProtection;
 
     public Player(int x, int y){
         super(x,y);
+        this.spawnProtection = true;
     }
 
     public int getLives() {
@@ -37,8 +39,17 @@ public class Player extends Entity{
         return new Position(position.getX()-1, position.getY());
     }
 
+    public boolean getSpawnProtection() {
+        return spawnProtection;
+    }
+
+    public void setSpawnProtection(boolean spawnProtection) {
+        this.spawnProtection = spawnProtection;
+    }
+
     public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#00fffb"));
+        if (spawnProtection) graphics.setForegroundColor(TextColor.Factory.fromString("#ffe600"));
+        else if (spawnProtection == false) graphics.setForegroundColor(TextColor.Factory.fromString("#00fffb"));
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "s");
     }
 
