@@ -12,6 +12,7 @@ public class ExplosionViewer extends EntityViewer {
         super(screen);
     }
 
+    @Override
     public void draw(Entity entity){
         graphics.setForegroundColor(TextColor.Factory.fromString("#ff8000"));
         graphics.enableModifiers(SGR.BOLD);

@@ -25,14 +25,14 @@ public class ExplosionController {
 
     public void manageExplosions() throws InterruptedException {
         for(Explosion explosion : space.getExplosions()){
-            if ((player.getPosition() != player.getRespawnPosition()) || player.isShooting()) {
+            if ((player.getPosition().equals(player.getRespawnPosition()) == false) || player.isShooting()) {
                 space.getExplosions().remove(explosion);
                 break;
             }
         }
 
         for(Explosion explosion : space.getEnemyExplosions()){
-            if(player.getPosition() != space.getPlayer().getPlayerTracker()){
+            if(player.getPosition().equals(space.getPlayer().getPlayerTracker()) == false){
                 space.getEnemyExplosions().remove(explosion);
                 break;
             }

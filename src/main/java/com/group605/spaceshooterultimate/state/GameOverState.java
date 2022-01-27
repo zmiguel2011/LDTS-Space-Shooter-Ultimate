@@ -8,8 +8,6 @@ import java.io.IOException;
 
 public class GameOverState extends GameState{
 
-    private Game game;
-    private Screen screen;
     private GameOverController gameOverController;
 
     public GameOverState(Game game, Screen screen, int highscore, int score) throws IOException {

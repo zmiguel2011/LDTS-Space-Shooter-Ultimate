@@ -38,22 +38,6 @@ public class SpaceShipController {
             spaceship.moveEnemy();
     }
 
-    /*
-    public void manageSpaceship() {
-        for(Spaceship spaceship : space.getSpaceships()){
-            ///EnemyShotFire(spaceship);
-            //isEnemyHit(spaceship); //Feito
-            //if(spaceship.checkImpact(spaceship, player) || canEntityMove(spaceship.getPosition()) == false || spaceship.isDead()){
-                //spaceships.remove(spaceship);
-                break;
-            }
-            //if(isPlayerHit(player.getPosition())) // Feito em PlayerController!
-                //player.lives--;
-            }
-        }
-    }
-    */
-
     public void manageSpaceships(){
         moveSpaceship();
         for (Spaceship spaceship : space.getSpaceships()){
