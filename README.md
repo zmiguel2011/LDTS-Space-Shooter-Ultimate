@@ -1,5 +1,6 @@
-# LDTS_T06_G605 - Space Shooter Ultimate
+Space Shooter Ultimate
 
+`An arcade like game built on Java, through TDD`
 
 The space shooter ultimate is a space invaders type game in which the goal is to kill the maximum amount of enemies without losing all your lives. 
 The longer you stay alive the more enemies will spawn and the stronger they will be.
